@@ -2,7 +2,7 @@
   "name": "API-Projeto-M4",
   "version": "1.0.0",
   "main": "src/server.js",
-  "repository": "git@github.com:TAraujoS/API-Projeto-M4.git",
+  "repository": "git@github.com/larissa-sato/cine_express-projeto_final-M4",
   "author": "Thiago AS <thiago-pin@gotmail.com>",
   "license": "MIT",
   "scripts": {
@@ -13,8 +13,11 @@
   "dependencies": {
     "@types/jest": "^29.2.0",
     "@types/reflect-metadata": "^0.1.0",
+<<<<<<< HEAD
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
+=======
+>>>>>>> 2a67fb7555b0a77d164773fd23d35e00fc929e1d
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
