@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryColumn } from "typeorm";
-
 import { v4 as uuid } from "uuid";
 
 @Entity("tickets")
@@ -16,8 +15,8 @@ export class Ticket {
   @Column()
   chair: string;
 
-  @Column()
-  session_id: string;
+  //   @OneToOne(() => Session)
+  //   session: Session;
 
   constructor() {
     if (!this.id) {
