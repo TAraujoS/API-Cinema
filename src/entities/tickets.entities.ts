@@ -1,8 +1,7 @@
 import { Entity, Column, PrimaryColumn } from "typeorm";
-import { v4 as uuid } from "uuid";
 
 @Entity("tickets")
-export class Ticket {
+export class Tickets {
   @PrimaryColumn("uuid")
   readonly id: string;
 
@@ -17,10 +16,4 @@ export class Ticket {
 
   //   @OneToOne(() => Session)
   //   session: Session;
-
-  constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
-  }
 }
