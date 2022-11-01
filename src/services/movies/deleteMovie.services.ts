@@ -2,7 +2,7 @@ import { AppDataSource } from "../../data-source";
 import { Movies } from "../../entities/movies.entities";
 import { AppError } from "../../errors/appError";
 
-const listMoviesByIdService = async (id: string): Promise<Movies> => {
+const deleteMovieService = async (id: string): Promise<void> => {
   const moviesRepository = AppDataSource.getRepository(Movies);
 
   const listedMovies = await moviesRepository.findOneBy({
@@ -12,8 +12,6 @@ const listMoviesByIdService = async (id: string): Promise<Movies> => {
   if (!listedMovies) {
     throw new AppError("Movie was not found");
   }
-
-  return listedMovies;
 };
 
-export default listMoviesByIdService;
+export default deleteMovieService;
