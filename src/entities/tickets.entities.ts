@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+} from "typeorm";
 import { Sessions } from "./sessions.entities";
 import { User } from "./user.entities";
 
@@ -7,14 +14,14 @@ export class Tickets {
   @PrimaryColumn("uuid")
   readonly id: string;
 
-  @Column()
-  quantity: number;
-
-  @Column()
+  @Column({ default: 15 })
   price: number;
 
   @Column()
-  chair: string;
+  chair: number;
+
+  @ManyToOne(() => User, { eager: true })
+  user: User;
 
   @OneToOne(() => Sessions)
   @JoinColumn()

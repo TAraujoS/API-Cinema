@@ -22,9 +22,9 @@ export class Sessions {
   @CreateDateColumn({ type: "timestamp" })
   hour: Date;
 
-  @ManyToMany(() => Rooms, (rooms) => rooms.sessions)
-  @JoinTable()
-  rooms: Rooms[];
+  @OneToOne(() => Rooms)
+  @JoinColumn()
+  room: string;
 
   @OneToOne(() => Movies)
   @JoinColumn()

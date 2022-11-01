@@ -17,9 +17,6 @@ export class Rooms {
   @Column({ length: 100 })
   capacity: string;
 
-  @ManyToMany(() => Sessions, (session) => session.rooms)
-  sessions: Sessions[];
-
-  @ManyToOne(() => Cinema, (cinema) => cinema.rooms)
+  @ManyToOne(() => Cinema)
   cinema: Cinema;
 }

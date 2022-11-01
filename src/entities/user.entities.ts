@@ -7,6 +7,7 @@ import {
   OneToOne,
   JoinColumn,
   ManyToOne,
+  OneToMany,
 } from "typeorm";
 import { Cinema } from "./cine.entities";
 import { PaymentInfo } from "./paymentInfo.entities";
@@ -47,11 +48,11 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => Tickets)
+  @OneToMany(() => Tickets, (tickets) => tickets.user)
   @JoinColumn()
-  tickets: string;
+  tickets: Tickets[];
 
-  @OneToOne(() => PaymentInfo)
+  @OneToOne(() => PaymentInfo, { eager: true })
   @JoinColumn()
   paymentInfo: string;
 
