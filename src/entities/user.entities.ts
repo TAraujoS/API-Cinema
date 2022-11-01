@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn, ManyToOne} from "typeorm";
+import { Cinema } from "./cine.entities";
+import { PaymentInfo } from "./paymentInfo.entities";
 
 @Entity("users")
 export class User {
@@ -35,7 +37,12 @@ export class User {
   // @OneToOne(()=> Ticket)@JoinColumn()
   // ticket: string
 
-  // @OneToOne (()=> PaymentInfo)@JoinColumn()
-  // paymentInfo: string
+  @OneToOne (()=> PaymentInfo)@JoinColumn()
+  paymentInfo: string
+
+  @ManyToOne(()=> Cinema, {eager:true})
+  cinema: Cinema
 
 }
+
+

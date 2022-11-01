@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Cinema } from "./cine.entities";
 
 @Entity("movies")
 export class Movies {
@@ -19,4 +20,7 @@ export class Movies {
 
   @Column()
   onDisplay: boolean;
+
+  @ManyToOne(()=>Cinema, {eager:true})
+  cinema: Cinema
 }
