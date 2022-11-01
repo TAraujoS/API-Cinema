@@ -12,9 +12,9 @@ const createMovieController = async (req: Request, res: Response) => {
   return res.status(201).json(createdMovie);
 };
 
-const listMoviesController = async (res: Response) => {
+const listMoviesController = async (req: Request, res: Response) => {
   const movies = await listMoviesService();
-  return res.status(200).json(movies);
+  return res.json(movies);
 };
 
 const listMoviesByIdController = async (req: Request, res: Response) => {

@@ -1,4 +1,5 @@
 import express from "express";
+import "reflect-metadata";
 import "express-async-errors";
 import { handleErrorMiddleware } from "./middlewares/handleError.middleware";
 import movieRoutes from "./routes/movies.routes";
