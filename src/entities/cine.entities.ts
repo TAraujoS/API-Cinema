@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Movies } from "./movies.entities";
+import { Rooms } from "./rooms.entities";
 import { User } from "./user.entities";
 
 @Entity("cinema")
@@ -13,9 +14,9 @@ export class Cinema {
   @OneToMany(() => User, (user) => user.cinema)
   users: string;
 
-  @OneToMany(() => Movies, (movie) => movie.cinema)
+  @OneToMany(() => Movies, (movies) => movies.cinema)
   movies: Movies[];
 
-  // @OneToMany(()=>Rooms, (room)=> room.cinema)
-  // rooms : Rooms[]
-}
+  @OneToMany(() => Rooms, (rooms) => rooms.cinema)
+  rooms: Rooms[];
+} 

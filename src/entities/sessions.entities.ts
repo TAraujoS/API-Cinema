@@ -5,6 +5,8 @@ import {
   OneToMany,
   OneToOne,
   JoinColumn,
+  ManyToMany,
+  JoinTable,
 } from "typeorm";
 import { Movies } from "./movies.entities";
 import { Rooms } from "./rooms.entities";
@@ -20,8 +22,9 @@ export class Sessions {
   @CreateDateColumn({ type: "timestamp" })
   hour: Date;
 
-  // @OneToMany(() => Rooms, (rooms) => rooms.sessions)
-  // properties: Rooms[];
+  @ManyToMany(() => Rooms, (rooms) => rooms.sessions)
+  @JoinTable()
+  rooms: Rooms[];
 
   @OneToOne(() => Movies)
   @JoinColumn()

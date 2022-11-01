@@ -4,7 +4,7 @@ import { Cinema } from "./cine.entities";
 @Entity("movies")
 export class Movies {
   @PrimaryGeneratedColumn("uuid")
-  readonly id: number;
+  readonly id: string;
 
   @Column()
   name: string;
@@ -12,15 +12,15 @@ export class Movies {
   @Column()
   gender: string;
 
-  @Column({ type: "float", precision: 1, scale: 1 })
+  @Column({ type: "decimal", precision: 1, scale: 1 })
   avaliation: number;
 
-  @Column({ type: "float", precision: 4, scale: 2 })
-  duration: number;
+  @Column()
+  duration: string;
 
   @Column()
   onDisplay: boolean;
 
-  @ManyToOne(()=>Cinema, {eager:true})
-  cinema: Cinema
+  @ManyToOne(() => Cinema, { eager: true })
+  cinema: Cinema;
 }

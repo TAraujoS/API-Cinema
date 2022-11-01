@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from "typeorm";
+import { Sessions } from "./sessions.entities";
+import { User } from "./user.entities";
 
 @Entity("tickets")
 export class Tickets {
@@ -14,6 +16,7 @@ export class Tickets {
   @Column()
   chair: string;
 
-  //   @OneToOne(() => Session)
-  //   session: Session;
+  @OneToOne(() => Sessions)
+  @JoinColumn()
+  session: Sessions;
 }
