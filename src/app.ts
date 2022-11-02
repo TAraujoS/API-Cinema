@@ -7,6 +7,7 @@ import userRoutes from "./routes/user.routes";
 import paymentRoutes from "./routes/payments.routes";
 import movieRoutes from "./routes/movies.routes";
 import roomsRoutes from "./routes/rooms.routes";
+import cinemaRoutes from "./routes/cinema.routes";
 
 const app = express();
 app.use(express.json());
@@ -15,7 +16,7 @@ app.use("/login", loginRoutes);
 app.use("/paymentInfo", paymentRoutes);
 app.use("/rooms", roomsRoutes);
 app.use("/movies", movieRoutes);
-
+app.use("/cinema", cinemaRoutes);
 app.use(handleErrorMiddleware);
 
 export default app;

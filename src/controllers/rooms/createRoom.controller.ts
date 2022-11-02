@@ -7,7 +7,7 @@ const createRoomController = async (req: Request, res: Response) => {
 
   const newRoom = await createRoomsService(data);
 
-  return res.status(201).send(newRoom);
+  return res.status(201).json(newRoom);
 };
 
 export default createRoomController;

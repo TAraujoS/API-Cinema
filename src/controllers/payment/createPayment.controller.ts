@@ -5,6 +5,7 @@ import createPaymentServices from "../../services/payments/createPayment.service
 
 const createPaymentController = async (req: Request, res: Response) => {
   const data: IPaymentRequest = req.body;
+
   const createdPayment = await createPaymentServices(data);
 
   return res.status(201).json(instanceToPlain(createdPayment));
