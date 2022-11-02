@@ -21,7 +21,7 @@ export class User {
   name: string;
 
   @Column()
-  birthDate: Date;
+  birthDate: string;
 
   @Column({ default: true })
   isActive: boolean;
@@ -35,7 +35,7 @@ export class User {
   @Column()
   contact: string;
 
-  @Column()
+  @Column({unique:true})
   email: string;
 
   @Column()
