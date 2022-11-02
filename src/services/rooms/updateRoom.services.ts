@@ -1,10 +1,10 @@
 import { AppDataSource } from "../../data-source";
 import { Rooms } from "../../entities/rooms.entities";
 import { AppError } from "../../errors/appError";
-import roomsRoutes from "../../routes/rooms.routes";
+import { IRoomUpdate } from "../../interfaces/rooms";
 
 const updateRoomService = async (
-  { capacity, sessions, cinema },
+  { capacity }: IRoomUpdate,
   id: string
 ): Promise<Rooms> => {
   const roomsRepository = AppDataSource.getRepository(Rooms);
@@ -19,8 +19,6 @@ const updateRoomService = async (
 
   await roomsRepository.update(id, {
     capacity: capacity ? capacity : room.capacity,
-    sessions: sessions ? sessions : room.sessions,
-    cinema: cinema ? cinema : room.cinema,
   });
 
   const updatedRoom = await roomsRepository.findOneBy({
