@@ -1,24 +1,13 @@
 import { Request, Response } from "express";
-import { AppError, handleError } from "../../errors/appError";
 import { IRoomRequest } from "../../interfaces/rooms";
-import createRoomsService from "../../services/rooms/createRoom.service";
+import createRoomsService from "../../services/rooms/createRoom.services";
 
 const createRoomController = async (req: Request, res: Response) => {
-  try {
-    const { roomId, capacity, sessions_id }: IRoomRequest = req.body;
+  const data: IRoomRequest = req.body;
 
-    const roo = await createRoomsService({
-      roomId,
-      capacity,
-      sessions_id,
-    });
+  const newRoom = await createRoomsService(data);
 
-    return res.status(201).send(roo);
-  } catch (err) {
-    if (err instanceof AppError) {
-      handleError(err, res);
-    }
-  }
+  return res.status(201).send(newRoom);
 };
 
 export default createRoomController;

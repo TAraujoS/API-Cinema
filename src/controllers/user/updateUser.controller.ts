@@ -2,13 +2,14 @@ import { Request, Response } from "express";
 import { IUserUpdate } from "../../interfaces/user/users.interface";
 import updateUserService from "../../services/user/updateUser.services";
 
-const updateUserController =async (req: Request, res:Response) => {
-  const user : IUserUpdate = req.body
-  const id : string = req.params.id
-  const updateUser = await updateUserService(user, id)
+const updateUserController = async (req: Request, res: Response) => {
+  const user: IUserUpdate = req.body;
 
-  return res.json(updateUser)
+  const { id } = req.params;
 
-}
+  const updateUser = await updateUserService(user, id);
 
-export default updateUserController
+  return res.json(updateUser);
+};
+
+export default updateUserController;

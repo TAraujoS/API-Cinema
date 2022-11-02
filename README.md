@@ -18,7 +18,7 @@ Essa Api foi desenvolvida ....
 
 ## **2. Entity Relationship Diagram**
 
-![Diagram](diagram.png)
+![Diagram](diagram_api_cine.png)
 
 <br>
 
