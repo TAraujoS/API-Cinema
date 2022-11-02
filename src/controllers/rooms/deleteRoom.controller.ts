@@ -9,4 +9,4 @@ const deleteRoomController = async (req: Request, res: Response) => {
   return res.status(204).json();
 };
 
-export { deleteRoomController };
+export default deleteRoomController;

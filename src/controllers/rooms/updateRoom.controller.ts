@@ -12,4 +12,4 @@ const updateRoomController = async (req: Request, res: Response) => {
   return res.status(200).json(updatedRoom);
 };
 
-export { updateRoomController };
+export default updateRoomController;
