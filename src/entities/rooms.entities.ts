@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -17,9 +18,9 @@ export class Rooms {
   @Column({ length: 100 })
   capacity: string;
 
-  @ManyToMany(() => Sessions, (session) => session.rooms)
-  sessions: Sessions[];
-
   @ManyToOne(() => Cinema, (cinema) => cinema.rooms)
   cinema: Cinema;
+
+  @ManyToOne(() => Sessions)
+  sessions: Sessions[];
 }

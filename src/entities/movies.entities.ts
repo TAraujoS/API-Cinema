@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import { Cinema } from "./cine.entities";
+import { Sessions } from "./sessions.entities";
 
 @Entity("movies")
 export class Movies {
@@ -23,4 +24,7 @@ export class Movies {
 
   @ManyToOne(() => Cinema, { eager: true })
   cinema: Cinema;
+
+  @ManyToOne(() => Sessions, { eager: true })
+  sessions: Sessions[];
 }
