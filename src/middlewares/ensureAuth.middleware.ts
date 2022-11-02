@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { AppError } from "../errors/appError";
 
 export const ensureAuthMiddleware = async (
   req: Request,
@@ -27,6 +26,7 @@ export const ensureAuthMiddleware = async (
     req.user = {
       isAdm: decoded.isAdm,
       id: decoded.sub,
+      isEmployee: decoded.isEmployee,
     };
 
     return next();
