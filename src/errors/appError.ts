@@ -1,3 +1,5 @@
+import { Response } from "express";
+
 export class AppError extends Error {
   statusCode: number;
 
@@ -8,4 +10,10 @@ export class AppError extends Error {
   }
 }
 
+export const handleError = (err: AppError, res: Response) => {
+  const { statusCode, message } = err;
 
+  return res.status(statusCode).json({
+    message,
+  });
+};
