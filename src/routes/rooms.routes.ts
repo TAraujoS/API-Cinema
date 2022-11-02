@@ -1,12 +1,13 @@
 import { Router } from "express";
 import createRoomController from "../controllers/rooms/createRoom.controller";
-import getRoomsController from "../controllers/rooms/getRoom.controller";
-import getRoomIdController from "../controllers/rooms/getRoomId.controller";
+import getRoomsController from "../controllers/rooms/listRoom.controller";
+import getRoomIdController from "../controllers/rooms/listRoomId.controller";
+import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
 
-const routes = Router();
+const roomsRoutes = Router();
 
-export const roomsRoutes = () => {
-  routes.post("/", createRoomController);
-  routes.get("/", getRoomsController, getRoomIdController);
-  return routes;
-};
+roomsRoutes.post("", ensureAuthMiddleware, createRoomController);
+roomsRoutes.get("", ensureAuthMiddleware, getRoomsController);
+roomsRoutes.get("", ensureAuthMiddleware, getRoomIdController);
+
+export default roomsRoutes;

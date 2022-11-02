@@ -1,7 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { Rooms } from "../../entities/rooms.entities";
 import { IRoom, IRoomRequest } from "../../interfaces/rooms";
-import { v4 as uuid } from "uuid";
 import { AppError } from "../../errors/appError";
 import { Sessions } from "../../entities/sessions.entities";
 import { Cinema } from "../../entities/cine.entities";
@@ -13,18 +12,16 @@ const createRoomsService = async ({
   cinemaId,
 }: IRoomRequest): Promise<Rooms> => {
   const roomsRepository = AppDataSource.getRepository(Rooms);
-
   const sessionRepository = AppDataSource.getRepository(Sessions);
-
   const cinemaRepository = AppDataSource.getRepository(Cinema);
 
-  let d: Date = new Date();
-  const date: string = `${d.getDate()}/${d.getMonth()}/${d.getFullYear()}, ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+  // let day: Date = new Date();
+  // const date: string = `${day.getDate()}/${day.getMonth()}/${day.getFullYear()}, ${day.getHours()}:${day.getMinutes()}:${day.getSeconds()}`;
 
   const roomsId = await roomsRepository.findOneBy({ id: roomId });
 
   if (roomsId) {
-    throw new AppError("this Room already exists", 400);
+    throw new AppError("This room already exists", 400);
   }
 
   const findSession = await sessionRepository.find();
