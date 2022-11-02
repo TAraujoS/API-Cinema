@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { Rooms } from "../../entities/rooms.entities";
-import { IRoom, IRoomRequest } from "../../interfaces/rooms";
+import { IRoomRequest } from "../../interfaces/rooms";
 import { AppError } from "../../errors/appError";
 import { Sessions } from "../../entities/sessions.entities";
 import { Cinema } from "../../entities/cine.entities";

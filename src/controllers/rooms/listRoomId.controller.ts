@@ -3,17 +3,11 @@ import { AppError, handleError } from "../../errors/appError";
 import getRoomIdService from "../../services/rooms/listRoomId.services";
 
 const getRoomIdController = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    const roo = await getRoomIdService(id);
+  const room = await getRoomIdService(id);
 
-    return res.send(roo);
-  } catch (err) {
-    if (err instanceof AppError) {
-      handleError(err, res);
-    }
-  }
+  return res.json(room);
 };
 
 export default getRoomIdController;

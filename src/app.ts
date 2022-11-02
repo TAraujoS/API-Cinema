@@ -16,8 +16,7 @@ app.use("/login", loginRoutes);
 app.use("/paymentInfo", paymentRoutes);
 app.use("/rooms", roomsRoutes);
 app.use("/movies", movieRoutes);
-
+app.use("/cinema", cinemaRoutes);
 app.use(handleErrorMiddleware);
 
-app.use("/cinema", cinemaRoutes);
 export default app;
