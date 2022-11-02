@@ -5,13 +5,14 @@ import { User } from "./user.entities";
 
 @Entity("cinema")
 export class Cinema {
-  @PrimaryGeneratedColumn()
-  readonly id: number;
+
+  @PrimaryGeneratedColumn("uuid")
+   readonly id: string;
 
   @Column()
   name: string;
 
-  @OneToMany(() => User, (user) => user.cinema)
+  @OneToMany(() => User, (users) => users.cinema)
   users: string;
 
   @OneToMany(() => Movies, (movies) => movies.cinema)
@@ -19,4 +20,4 @@ export class Cinema {
 
   @OneToMany(() => Rooms, (rooms) => rooms.cinema)
   rooms: Rooms[];
-} 
+}
