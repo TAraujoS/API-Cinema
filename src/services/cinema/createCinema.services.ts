@@ -1,6 +1,5 @@
 import { AppDataSource } from "../../data-source";
 import { Cinema } from "../../entities/cine.entities";
-
 import { AppError } from "../../errors/appError";
 
 const createCinemaServices = async (name: string): Promise<Cinema> => {

@@ -5,6 +5,7 @@ import { handleErrorMiddleware } from "./middlewares/handleError.middleware";
 import loginRoutes from "./routes/loginUser.routes";
 import userRoutes from "./routes/user.routes";
 import movieRoutes from "./routes/movies.routes";
+import cinemaRoutes from "./routes/cinema.routes";
 
 const app = express();
 app.use(express.json());
