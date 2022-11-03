@@ -10,3 +10,7 @@ export interface IRoom {
   sessionsId: string;
   cinemaId: string;
 }
+
+export interface IRoomUpdate {
+  capacity: string;
+}
