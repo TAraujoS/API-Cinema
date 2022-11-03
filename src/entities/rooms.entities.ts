@@ -7,17 +7,16 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import sessionsRouter from "../routes/sessions.routes";
 import { Cinema } from "./cine.entities";
 import { Sessions } from "./sessions.entities";
 
 @Entity("rooms")
 export class Rooms {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn()
   readonly id: string;
 
-  @Column({ length: 100 })
-  capacity: string;
+  @Column({ nullable: true })
+  capacity: number;
 
   @OneToMany(() => Cinema, (cinema) => cinema.rooms)
   cinema: Cinema;

@@ -1,16 +1,16 @@
 export interface IRoomRequest {
   roomId: string;
-  capacity: string;
+  capacity: number;
   sessionsId: string;
   cinemaId: string;
 }
 
 export interface IRoom {
-  capacity: string;
+  capacity: number;
   sessionsId: string;
   cinemaId: string;
 }
 
 export interface IRoomUpdate {
-  capacity: string;
+  capacity: number;
 }

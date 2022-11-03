@@ -11,7 +11,7 @@ import { Sessions } from "./sessions.entities";
 
 @Entity("movies")
 export class Movies {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn()
   readonly id: string;
 
   @Column()
