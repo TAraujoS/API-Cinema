@@ -2,8 +2,6 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  OneToMany,
-  JoinColumn,
   ManyToOne,
 } from "typeorm";
 import { Movies } from "./movies.entities";

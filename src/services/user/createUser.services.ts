@@ -21,9 +21,9 @@ const createUserService = async ({
     email,
   });
 
-  if (findUser) {
-    throw new AppError("User already exists", 409);
-  }
+  // if (findUser) {
+  //   throw new AppError("User already exists", 409);
+  // }
 
   const user = userRepository.create({
     name,
