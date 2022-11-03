@@ -5,22 +5,23 @@ import {
   OneToOne,
   JoinColumn,
   ManyToOne,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { Sessions } from "./sessions.entities";
 import { User } from "./user.entities";
 
 @Entity("tickets")
 export class Tickets {
-  @PrimaryColumn("uuid")
+  @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
   @Column({ default: 15 })
   price: number;
 
-  @Column()
+  @Column({ nullable: true })
   chair: number;
 
-  @ManyToOne(() => User, { eager: true })
+  @ManyToOne(() => User)
   user: User;
 
   @OneToOne(() => Sessions)

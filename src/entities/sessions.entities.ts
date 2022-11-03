@@ -18,9 +18,9 @@ export class Sessions {
   @CreateDateColumn({ type: "time" })
   hour: Date;
 
-  @ManyToOne(() => Rooms)
+  @ManyToOne(() => Rooms, { eager: true })
   room: Rooms;
 
-  @ManyToOne(() => Movies)
+  @ManyToOne(() => Movies, { eager: true })
   movie: Movies;
 }

@@ -25,7 +25,7 @@ const createMovieService = async ({
 
   const findCinema = await cinemaRepository.findOneBy({ id: cinema.id });
   if (!findCinema) {
-    throw new AppError("Cinema not found", 400);
+    throw new AppError("Cinema not found");
   }
 
   const movie = moviesRepository.create({

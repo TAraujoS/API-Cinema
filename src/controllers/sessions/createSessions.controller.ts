@@ -7,13 +7,7 @@ const createSessionController = async (req: Request, res: Response) => {
 
   const newSession = await createSessionService(session);
 
-  return res.status(201).json({ message: newSession });
-
-  // if (newSession instanceof Session) {
-  //   return res.status(201).json(newSession);
-  // }
-
-  // return res.status(newSession[1] as number).json(newSession[0]);
+  return res.status(201).json({ session: newSession });
 };
 
 export default createSessionController;
