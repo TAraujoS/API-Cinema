@@ -3,10 +3,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   OneToMany,
-  OneToOne,
   JoinColumn,
-  ManyToMany,
-  JoinTable,
+  ManyToOne,
 } from "typeorm";
 import { Movies } from "./movies.entities";
 import { Rooms } from "./rooms.entities";
@@ -19,14 +17,12 @@ export class Sessions {
   @CreateDateColumn({ type: "date" })
   day: Date;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: "time" })
   hour: Date;
 
-  @OneToOne(() => Rooms)
-  @JoinColumn()
-  room: string;
+  @ManyToOne(() => Rooms)
+  room: Rooms;
 
-  @OneToOne(() => Movies)
-  @JoinColumn()
-  movie: string;
+  @ManyToOne(() => Movies)
+  movie: Movies;
 }

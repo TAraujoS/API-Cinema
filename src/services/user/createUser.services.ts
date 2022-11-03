@@ -1,6 +1,7 @@
 import { hash } from "bcryptjs";
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entities";
+import { AppError } from "../../errors/appError";
 import { IUserRequest } from "../../interfaces/user/users.interface";
 
 const createUserService = async ({
@@ -19,9 +20,10 @@ const createUserService = async ({
   const findUser = userRepository.findOneBy({
     email,
   });
-  // if(findUser){
-  //   throw new AppError("User already exists", 409)
-  // }
+
+  if (findUser) {
+    throw new AppError("User already exists", 409);
+  }
 
   const user = userRepository.create({
     name,

@@ -1,11 +1,13 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import sessionsRouter from "../routes/sessions.routes";
 import { Cinema } from "./cine.entities";
 import { Sessions } from "./sessions.entities";
 
@@ -17,6 +19,10 @@ export class Rooms {
   @Column({ length: 100 })
   capacity: string;
 
-  @ManyToOne(() => Cinema)
+  @OneToMany(() => Cinema, (cinema) => cinema.rooms)
   cinema: Cinema;
+
+  @OneToMany(() => Sessions, (session) => session.id)
+  @JoinColumn()
+  sessions: Sessions[];
 }

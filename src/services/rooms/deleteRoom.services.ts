@@ -1,19 +1,19 @@
 import { AppDataSource } from "../../data-source";
-import { Rooms } from "../../entities/rooms.entities";
+import { Sessions } from "../../entities/sessions.entities";
 import { AppError } from "../../errors/appError";
 
-const deleteRoomService = async (id: string): Promise<void> => {
-  const roomsRepository = AppDataSource.getRepository(Rooms);
+const deleteSessionService = async (id: string): Promise<void> => {
+  const sessionRepository = AppDataSource.getRepository(Sessions);
 
-  const room = await roomsRepository.findOneBy({
+  const session = await sessionRepository.findOneBy({
     id: id,
   });
 
-  if (!room) {
+  if (!session) {
     throw new AppError("Room was not found");
   }
 
-  await roomsRepository.delete(id);
+  await sessionRepository.delete(id);
 };
 
-export default deleteRoomService;
+export default deleteSessionService;
