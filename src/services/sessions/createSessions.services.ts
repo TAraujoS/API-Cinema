@@ -24,13 +24,13 @@ const createSessionService = async ({
 
   const data = await normalizeDateService(day, hour);
 
-  // if (!newRoom) {
-  //   throw new AppError("This room dont exist", 404);
-  // }
+  if (!newRoom) {
+    throw new AppError("This room dont exist", 404);
+  }
 
-  // if (!newMovie) {
-  //   throw new AppError("This movie dont exist", 404);
-  // }
+  if (!newMovie) {
+    throw new AppError("This movie dont exist", 404);
+  }
 
   const sessionExist = await sessionRepository.findOneBy({
     day: data.fullDate,

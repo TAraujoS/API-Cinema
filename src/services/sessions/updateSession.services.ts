@@ -28,10 +28,8 @@ const updateSessionService = async (
     throw new AppError("Session dont found", 404);
   }
 
-  const data = await normalizeDateService(day, hour);
-
   await sessionRepository.update(id, {
-    day: data.fullDate ? data.fullDate : findSession.day,
+    day: day ? day : findSession.day,
     hour: hour ? hour : findSession.hour,
     room: newRoom ? newRoom : findSession.room,
     movie: newMovie ? newMovie : findSession.movie,
