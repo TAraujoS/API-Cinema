@@ -25,6 +25,7 @@ export const normalizeDateService = async (day: string, hour: string) => {
   const hours = new Date(fullDate).getHours();
 
   const data = {
+    normalDate,
     day,
     hours,
     dayWeek,

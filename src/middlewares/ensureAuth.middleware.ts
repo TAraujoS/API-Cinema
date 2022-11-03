@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-export const ensureAuthMiddleware = async (
+const ensureAuthMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -25,9 +25,12 @@ export const ensureAuthMiddleware = async (
 
     req.user = {
       isAdm: decoded.isAdm,
+      isEmployee: decoded.isEmployee,
       id: decoded.sub,
     };
 
     return next();
   });
 };
+
+export default ensureAuthMiddleware;

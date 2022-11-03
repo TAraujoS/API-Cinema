@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-export const ensureIsAdmMiddleware = async (
+const ensureIsAdmMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -12,3 +12,6 @@ export const ensureIsAdmMiddleware = async (
   }
   return next();
 };
+
+
+export default ensureIsAdmMiddleware;

@@ -2,12 +2,11 @@ import { AppDataSource } from "../../data-source";
 import { Movies } from "../../entities/movies.entities";
 import { Rooms } from "../../entities/rooms.entities";
 import { Sessions } from "../../entities/sessions.entities";
-import { User } from "../../entities/user.entities";
 import { AppError } from "../../errors/appError";
 import { ISessionRequest } from "../../interfaces/sessions";
 import { normalizeDateService } from "./normalizaSchedule.services";
 
-export const createSessionService = async ({
+const createSessionService = async ({
   day,
   hour,
   room_id,
@@ -25,12 +24,12 @@ export const createSessionService = async ({
 
   const data = await normalizeDateService(day, hour);
 
-  // if (!room) {
-  //   throw new AppError("This room or room dont exist", 404);
+  // if (!newRoom) {
+  //   throw new AppError("This room dont exist", 404);
   // }
 
-  // if (!movie) {
-  //   throw new AppError("This movie or movie dont exist", 404);
+  // if (!newMovie) {
+  //   throw new AppError("This movie dont exist", 404);
   // }
 
   const sessionExist = await sessionRepository.findOneBy({
@@ -38,20 +37,13 @@ export const createSessionService = async ({
   });
 
   if (sessionExist) {
-    throw new AppError("This user or movie dont exist", 404);
+    throw new AppError(
+      "There is already a section scheduled with this date and time in this room",
+      404
+    );
   }
 
   console.log(sessionExist);
-
-  // const normalizeSession = new Sessions();
-  // normalizeSession.day = data.fullDate;
-  // normalizeSession.hour = data.fullDate;
-  // normalizeSession.movie = newMovie;
-  // normalizeSession.room = newRoom;
-
-  // console.log(normalizeSession);
-
-  // const newSession = sessionRepository.create(normalizeSession);
 
   const newSession = sessionRepository.create({
     day: data.fullDate,
@@ -64,3 +56,5 @@ export const createSessionService = async ({
 
   return newSession;
 };
+
+export default createSessionService;

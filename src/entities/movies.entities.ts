@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
+} from "typeorm";
 import { Cinema } from "./cine.entities";
 import { Sessions } from "./sessions.entities";
 
@@ -13,7 +20,7 @@ export class Movies {
   @Column()
   gender: string;
 
-  @Column({ type: "decimal", precision: 1, scale: 1 })
+  @Column({ type: "decimal", precision: 2, scale: 1 })
   avaliation: number;
 
   @Column()
@@ -25,6 +32,7 @@ export class Movies {
   @ManyToOne(() => Cinema, { eager: true })
   cinema: Cinema;
 
-  @ManyToOne(() => Sessions, { eager: true })
+  @OneToMany(() => Sessions, (session) => session.id)
+  @JoinColumn()
   sessions: Sessions[];
 }

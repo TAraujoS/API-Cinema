@@ -1,19 +1,24 @@
 import { Router } from "express";
-import { createSessionController } from "../controllers/sessions/createSessions.controller";
-import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middleware";
-import { ensureIsAdmMiddleware } from "../middlewares/ensureIsAdm.middleware";
-import { ensureIsEmployeeMiddleware } from "../middlewares/ensureIsEmployee.middleware";
+import createSessionController from "../controllers/sessions/createSessions.controller";
+import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
+import ensureIsAdmMiddleware from "../middlewares/ensureIsAdm.middleware";
+import ensureIsEmployeeMiddleware from "../middlewares/ensureIsEmployee.middleware";
 
-export const sessionsRouter = Router();
+const sessionsRouter = Router();
 
-sessionsRouter.post("", createSessionController);
+sessionsRouter.post(
+  "",
+  ensureAuthMiddleware,
+  ensureIsEmployeeMiddleware,
+  createSessionController
+);
 
-// sessionsRouter.get(
-//   "",
-//   ensureAuthMiddleware,
-//   ensureIsAdmMiddleware
-//   listScheduleController
-// );
+sessionsRouter.get(
+  "",
+  ensureAuthMiddleware,
+  ensureIsAdmMiddleware
+  // listScheduleController
+);
 
 // sessionsRouter.get(
 //   "/properties/:id",
@@ -22,3 +27,5 @@ sessionsRouter.post("", createSessionController);
 //   ensureIdVerifyMiddleware,
 //   listScheduleController
 // );
+
+export default sessionsRouter;
