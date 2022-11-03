@@ -46,8 +46,8 @@ const createSessionService = async ({
   const newSession = sessionRepository.create({
     day: data.fullDate,
     hour: hour,
-    movie: newMovie,
     room: newRoom,
+    movie: newMovie,
   });
 
   await sessionRepository.save(newSession);
