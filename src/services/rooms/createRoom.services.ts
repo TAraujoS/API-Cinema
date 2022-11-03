@@ -8,7 +8,6 @@ import { Cinema } from "../../entities/cine.entities";
 const createRoomsService = async ({
   roomId,
   capacity,
-  sessionsId,
   cinemaId,
 }: IRoomRequest): Promise<Rooms> => {
   const roomsRepository = AppDataSource.getRepository(Rooms);
