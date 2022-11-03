@@ -43,8 +43,6 @@ const createSessionService = async ({
     );
   }
 
-  console.log(sessionExist);
-
   const newSession = sessionRepository.create({
     day: data.fullDate,
     hour: hour,

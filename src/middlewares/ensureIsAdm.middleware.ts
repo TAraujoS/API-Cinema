@@ -6,12 +6,12 @@ const ensureIsAdmMiddleware = async (
   next: NextFunction
 ) => {
   if (!req.user.isAdm) {
-    return res.status(403).json({
-      message: "User is not admin",
+    res.status(403).json({
+      message: "User is not adm",
     });
   }
+
   return next();
 };
-
 
 export default ensureIsAdmMiddleware;
