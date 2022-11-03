@@ -1,7 +1,6 @@
 export interface IRoomRequest {
   roomId: string;
   capacity: number;
-  sessionsId: string;
   cinemaId: string;
 }
 
