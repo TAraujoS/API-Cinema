@@ -7,10 +7,7 @@ const createTicketsController = async (req: Request, res: Response) => {
 
   const ticket = await createTicketsService(data);
 
-  return res.status(200).json({
-    message: "Ticket Created",
-    ticket: ticket,
-  });
+  return res.status(200).json(ticket);
 };
 
 export default createTicketsController;

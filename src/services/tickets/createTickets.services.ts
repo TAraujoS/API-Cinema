@@ -16,11 +16,18 @@ const createTicketsService = async ({
   const findTicket = await ticketRepository.findOne({
     where: {
       chair,
-    },
-    relations: {
-      session: true,
+      session: findSession,
     },
   });
+
+  // const findTicket = await ticketRepository.findOne({
+  //   where: {
+  //     chair,
+  //   },
+  //   relations:{
+  //     session: true
+  //   }
+  // });
 
   if (chair > 100) {
     throw new AppError("Choose a chair between 0 to 100");
@@ -38,8 +45,6 @@ const createTicketsService = async ({
     chair,
     session: findSession,
   });
-
-  ticketRepository.create(ticket);
 
   await ticketRepository.save(ticket);
 
