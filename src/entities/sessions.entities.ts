@@ -9,7 +9,7 @@ import { Rooms } from "./rooms.entities";
 
 @Entity("sessions")
 export class Sessions {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn()
   readonly id: string;
 
   @CreateDateColumn({ type: "date" })

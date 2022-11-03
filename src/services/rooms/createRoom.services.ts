@@ -8,7 +8,6 @@ import { Cinema } from "../../entities/cine.entities";
 const createRoomsService = async ({
   roomId,
   capacity,
-  sessionsId,
   cinemaId,
 }: IRoomRequest): Promise<Rooms> => {
   const roomsRepository = AppDataSource.getRepository(Rooms);
@@ -20,9 +19,9 @@ const createRoomsService = async ({
 
   const roomsId = await roomsRepository.findOneBy({ id: roomId });
 
-  if (roomsId) {
-    throw new AppError("This room already exists", 400);
-  }
+  // if (roomsId) {
+  //   throw new AppError("This room already exists", 400);
+  // }
 
   const findSession = await sessionRepository.find();
 
