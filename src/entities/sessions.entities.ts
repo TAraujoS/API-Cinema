@@ -2,8 +2,6 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  OneToMany,
-  JoinColumn,
   ManyToOne,
 } from "typeorm";
 import { Movies } from "./movies.entities";
@@ -20,9 +18,9 @@ export class Sessions {
   @CreateDateColumn({ type: "time" })
   hour: Date;
 
-  @ManyToOne(() => Rooms)
+  @ManyToOne(() => Rooms, { eager: true })
   room: Rooms;
 
-  @ManyToOne(() => Movies)
+  @ManyToOne(() => Movies, { eager: true })
   movie: Movies;
 }

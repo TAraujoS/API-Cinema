@@ -17,13 +17,15 @@ const createUserService = async ({
 
   const hashedPassword = await hash(password, 10);
 
-  const findUser = userRepository.findOneBy({
+  const findUser = await userRepository.findOneBy({
     email,
   });
 
-  // if (findUser) {
-  //   throw new AppError("User already exists", 409);
-  // }
+  console.log({ TESTE: findUser });
+
+  if (findUser) {
+    throw new AppError("User already exists", 409);
+  }
 
   const user = userRepository.create({
     name,

@@ -2,9 +2,11 @@ import { Request, Response } from "express";
 import createCinemaServices from "../../services/cinema/createCinema.services";
 
 const createCinemaController = async (req: Request, res: Response) => {
-  const name: string = req.body;
+  const { name } = req.body;
 
   const cinema = await createCinemaServices(name);
+
+  console.log(cinema);
 
   return res.status(201).json(cinema);
 };

@@ -7,7 +7,7 @@ const loginUserController = async (req: Request, res: Response) => {
 
   const token = await loginUserService(data);
 
-  return res.json(token);
+  return res.json({token: token});
 };
 
 export default loginUserController;
