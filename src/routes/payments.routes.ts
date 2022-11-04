@@ -18,13 +18,13 @@ paymentRoutes.post(
 paymentRoutes.patch(
   "/:id",
   ensureAuthMiddleware,
-  ensureUpdateMiddleware,
+  ensureIdUserMiddleware,
   updatePaymentController
 );
 paymentRoutes.get(
   "/:id",
   ensureAuthMiddleware,
-  ensureUpdateMiddleware,
+  ensureIdUserMiddleware,
   listPaymentController
 );
 paymentRoutes.delete(
