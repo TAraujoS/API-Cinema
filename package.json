@@ -1,16 +1,16 @@
 {
   "name": "api_cine_express",
   "version": "1.0.0",
-  "main": "src/server.js",
+  "main": "index.js",
   "repository": "git@github.com/larissa-sato/cine_express-projeto_final-M4",
   "author": "Thiago AS <thiago-pin@gotmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev src/server.ts",
+    "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest SECRET_KEY=1234 jest",
     "build": "tsc",
-    "start": "[ '/app/dist/src/app.js', '/app/dist/src/server.js' ]"
+    "start": "node dist/src/server.js"
   },
   "dependencies": {
     "@types/jest": "^29.2.2",
