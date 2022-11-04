@@ -1,4 +1,5 @@
 import express from "express";
+import "express-async-errors";
 import cinemaRoutes from "./routes/cinema.routes";
 import loginRoutes from "./routes/loginUser.routes";
 import movieRoutes from "./routes/movies.routes";

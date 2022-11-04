@@ -37,7 +37,7 @@ export class User {
   @Column()
   contact: string;
 
-  @Column({unique:true})
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -54,7 +54,7 @@ export class User {
   @JoinColumn()
   tickets: Tickets[];
 
-  @OneToOne(() => PaymentInfo, { eager: true })
+  @OneToOne(() => PaymentInfo)
   @JoinColumn()
   paymentInfo: string;
 
