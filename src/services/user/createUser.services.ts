@@ -24,7 +24,10 @@ const createUserService = async ({
   if (findUser) {
     throw new AppError("User already exists", 409);
   }
-
+  if(contact.length >=12){
+    throw new AppError("must contain eleven digits! ", 400)
+  }
+  
   const user = userRepository.create({
     name,
     email,
@@ -35,8 +38,13 @@ const createUserService = async ({
     password: hashedPassword,
   });
 
+  if(user.password !== "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"){
+    throw new AppError("password wrong !")
+  }
+  
+  
   await userRepository.save(user);
-
+  
   return user;
 };
 
