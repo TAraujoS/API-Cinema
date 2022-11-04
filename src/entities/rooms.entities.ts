@@ -15,13 +15,13 @@ export class Rooms {
   @PrimaryGeneratedColumn()
   readonly id: string;
 
-  @Column({ nullable: true })
+  @Column()
   capacity: number;
 
-  @OneToMany(() => Cinema, (cinema) => cinema.rooms)
+  @ManyToOne(() => Cinema, (cinema) => cinema.id)
+  @JoinColumn()
   cinema: Cinema;
 
   @OneToMany(() => Sessions, (session) => session.id)
-  @JoinColumn()
   sessions: Sessions[];
 }
