@@ -1,6 +1,6 @@
 export interface IPaymentRequest {
   name: string;
   number: string;
-  dueDate: Date;
+  dueDate: string;
   code: string;
 }
