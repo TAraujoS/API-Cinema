@@ -2,7 +2,7 @@ import { AppDataSource } from "../../data-source";
 import { Sessions } from "../../entities/sessions.entities";
 import { Tickets } from "../../entities/tickets.entities";
 import { AppError } from "../../errors/appError";
-import { ITicketRequest } from "../../interfaces/tickets/tickets.interface";
+import { ITicketRequest } from "../../interfaces/tickets";
 
 const createTicketsService = async ({
   chair,
@@ -19,15 +19,6 @@ const createTicketsService = async ({
       session: findSession,
     },
   });
-
-  // const findTicket = await ticketRepository.findOne({
-  //   where: {
-  //     chair,
-  //   },
-  //   relations:{
-  //     session: true
-  //   }
-  // });
 
   if (chair > 100) {
     throw new AppError("Choose a chair between 0 to 100");

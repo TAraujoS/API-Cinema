@@ -1,7 +1,6 @@
 import {
   Entity,
   Column,
-  PrimaryColumn,
   OneToOne,
   JoinColumn,
   ManyToOne,
@@ -9,6 +8,7 @@ import {
 } from "typeorm";
 import { Sessions } from "./sessions.entities";
 import { User } from "./user.entities";
+import { v4 as uuid } from "uuid";
 
 @Entity("tickets")
 export class Tickets {
@@ -28,4 +28,10 @@ export class Tickets {
   @OneToOne(() => Sessions)
   @JoinColumn()
   session: Sessions;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }

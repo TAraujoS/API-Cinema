@@ -2,7 +2,7 @@ import { hash } from "bcryptjs";
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entities";
 import { AppError } from "../../errors/appError";
-import { IUserRequest } from "../../interfaces/user/users.interface";
+import { IUserRequest } from "../../interfaces/user";
 
 const createUserService = async ({
   name,

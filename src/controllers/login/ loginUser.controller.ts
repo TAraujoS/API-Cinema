@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IUserLogin } from "../../interfaces/user/users.interface";
+import { IUserLogin } from "../../interfaces/user";
 import loginUserService from "../../services/login/loginUser.services";
 
 const loginUserController = async (req: Request, res: Response) => {
@@ -7,7 +7,7 @@ const loginUserController = async (req: Request, res: Response) => {
 
   const token = await loginUserService(data);
 
-  return res.json({token: token});
+  return res.json({ token: token });
 };
 
 export default loginUserController;
