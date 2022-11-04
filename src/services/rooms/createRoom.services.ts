@@ -14,14 +14,14 @@ const createRoomsService = async ({
   const sessionRepository = AppDataSource.getRepository(Sessions);
   const cinemaRepository = AppDataSource.getRepository(Cinema);
 
-  // let day: Date = new Date();
-  // const date: string = `${day.getDate()}/${day.getMonth()}/${day.getFullYear()}, ${day.getHours()}:${day.getMinutes()}:${day.getSeconds()}`;
+  //let day: Date = new Date();
+  //const date: string = `${day.getDate()}/${day.getMonth()}/${day.getFullYear()}, ${day.getHours()}:${day.getMinutes()}:${day.getSeconds()}`;
 
   const roomsId = await roomsRepository.findOneBy({ id: roomId });
 
-  // if (roomsId) {
-  //   throw new AppError("This room already exists", 400);
-  // }
+  /*if (roomsId) {
+    throw new AppError("This room already exists", 400);
+  }*/
 
   const findSession = await sessionRepository.find();
 
@@ -40,6 +40,14 @@ const createRoomsService = async ({
     sessions: findSession,
     cinema: findCinema,
   });
+
+  if (capacity < 30) {
+    throw new AppError("Minimum of 30 chairs");
+  }
+
+  if (capacity > 100) {
+    throw new AppError("Maximum of 100 chairs");
+  }
 
   await roomsRepository.save(newRoom);
 
