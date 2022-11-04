@@ -30,9 +30,9 @@ export class Movies {
   onDisplay: boolean;
 
   @ManyToOne(() => Cinema, { eager: true })
+  @JoinColumn()
   cinema: Cinema;
 
   @OneToMany(() => Sessions, (session) => session.id)
-  @JoinColumn()
   sessions: Sessions[];
 }

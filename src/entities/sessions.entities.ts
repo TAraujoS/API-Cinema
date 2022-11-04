@@ -3,6 +3,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   ManyToOne,
+  JoinColumn,
 } from "typeorm";
 import { Movies } from "./movies.entities";
 import { Rooms } from "./rooms.entities";
@@ -19,8 +20,10 @@ export class Sessions {
   hour: Date;
 
   @ManyToOne(() => Rooms, { eager: true })
+  @JoinColumn()
   room: Rooms;
 
   @ManyToOne(() => Movies, { eager: true })
+  @JoinColumn()
   movie: Movies;
 }

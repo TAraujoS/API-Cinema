@@ -22,6 +22,7 @@ export class Tickets {
   chair: number;
 
   @ManyToOne(() => User)
+  @JoinColumn()
   user: User;
 
   @OneToOne(() => Sessions)
