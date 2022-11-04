@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -11,15 +12,16 @@ import { Sessions } from "./sessions.entities";
 
 @Entity("rooms")
 export class Rooms {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn()
   readonly id: string;
 
-  @Column({ length: 100 })
-  capacity: string;
+  @Column({ nullable: true })
+  capacity: number;
 
-  @ManyToMany(() => Sessions, (session) => session.rooms)
-  sessions: Sessions[];
-
-  @ManyToOne(() => Cinema, (cinema) => cinema.rooms)
+  @OneToMany(() => Cinema, (cinema) => cinema.rooms)
   cinema: Cinema;
+
+  @OneToMany(() => Sessions, (session) => session.id)
+  @JoinColumn()
+  sessions: Sessions[];
 }

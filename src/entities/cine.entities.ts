@@ -5,9 +5,8 @@ import { User } from "./user.entities";
 
 @Entity("cinema")
 export class Cinema {
-
-  @PrimaryGeneratedColumn("uuid")
-   readonly id: string;
+  @PrimaryGeneratedColumn()
+  readonly id: string;
 
   @Column()
   name: string;

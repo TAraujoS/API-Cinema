@@ -8,6 +8,7 @@ import {
   OneToOne,
   JoinColumn,
   ManyToOne,
+  OneToMany,
 } from "typeorm";
 import { Cinema } from "./cine.entities";
 import { PaymentInfo } from "./paymentInfo.entities";
@@ -36,7 +37,7 @@ export class User {
   @Column()
   contact: string;
 
-  @Column({unique:true})
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -49,9 +50,9 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => Tickets)
+  @OneToMany(() => Tickets, (tickets) => tickets.user)
   @JoinColumn()
-  tickets: string;
+  tickets: Tickets[];
 
   @OneToOne(() => PaymentInfo)
   @JoinColumn()

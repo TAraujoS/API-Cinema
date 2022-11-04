@@ -2,31 +2,25 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  OneToMany,
-  OneToOne,
-  JoinColumn,
-  ManyToMany,
-  JoinTable,
+  ManyToOne,
 } from "typeorm";
 import { Movies } from "./movies.entities";
 import { Rooms } from "./rooms.entities";
 
 @Entity("sessions")
 export class Sessions {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn()
   readonly id: string;
 
   @CreateDateColumn({ type: "date" })
   day: Date;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: "time" })
   hour: Date;
 
-  @ManyToMany(() => Rooms, (rooms) => rooms.sessions)
-  @JoinTable()
-  rooms: Rooms[];
+  @ManyToOne(() => Rooms, { eager: true })
+  room: Rooms;
 
-  @OneToOne(() => Movies)
-  @JoinColumn()
-  movie: string;
+  @ManyToOne(() => Movies, { eager: true })
+  movie: Movies;
 }

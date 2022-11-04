@@ -1,20 +1,28 @@
-import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Sessions } from "./sessions.entities";
 import { User } from "./user.entities";
 
 @Entity("tickets")
 export class Tickets {
-  @PrimaryColumn("uuid")
+  @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
-  @Column()
-  quantity: number;
-
-  @Column()
+  @Column({ default: 15 })
   price: number;
 
-  @Column()
-  chair: string;
+  @Column({ nullable: true })
+  chair: number;
+
+  @ManyToOne(() => User)
+  user: User;
 
   @OneToOne(() => Sessions)
   @JoinColumn()

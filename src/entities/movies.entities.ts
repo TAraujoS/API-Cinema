@@ -1,9 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
+} from "typeorm";
 import { Cinema } from "./cine.entities";
+import { Sessions } from "./sessions.entities";
 
 @Entity("movies")
 export class Movies {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn()
   readonly id: string;
 
   @Column()
@@ -23,4 +31,8 @@ export class Movies {
 
   @ManyToOne(() => Cinema, { eager: true })
   cinema: Cinema;
+
+  @OneToMany(() => Sessions, (session) => session.id)
+  @JoinColumn()
+  sessions: Sessions[];
 }
