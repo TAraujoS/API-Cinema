@@ -21,8 +21,6 @@ const createUserService = async ({
     email,
   });
 
-  console.log({ TESTE: findUser });
-
   if (findUser) {
     throw new AppError("User already exists", 409);
   }
