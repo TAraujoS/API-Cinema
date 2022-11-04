@@ -29,7 +29,7 @@ const updateMovieService = async (
     id,
   });
 
-  return updatedMovie;
+  return updatedMovie!;
 };
 
 export default updateMovieService;
