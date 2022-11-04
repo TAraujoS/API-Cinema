@@ -1,6 +1,7 @@
+import { Exclude } from "class-transformer";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("payment_infos")
+@Entity("paymentInfo")
 export class PaymentInfo {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
@@ -15,5 +16,6 @@ export class PaymentInfo {
   dueDate: Date;
 
   @Column({ length: 3 })
+  @Exclude()
   code: string;
 }
