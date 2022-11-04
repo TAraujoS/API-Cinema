@@ -1,5 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { PaymentInfo } from "../../entities/paymentInfo.entities";
+import { AppError } from "../../errors/appError";
 import { IPaymentRequest } from "../../interfaces/payments";
 
 const createPaymentServices = async (
@@ -8,6 +9,18 @@ const createPaymentServices = async (
   const { name, number, dueDate, code } = data;
 
   const paymentRepository = AppDataSource.getRepository(PaymentInfo);
+
+  if (number.length !== 16) {
+    throw new AppError("Invalid card number", 401);
+  }
+
+  if (!dueDate) {
+    throw new AppError("Date is required", 401);
+  }
+
+  if (code.length !== 3) {
+    throw new AppError("Invalid code number", 401);
+  }
 
   const paymentInfo = paymentRepository.create({
     name,
