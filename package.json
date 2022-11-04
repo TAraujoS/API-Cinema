@@ -35,7 +35,6 @@
     "@types/supertest": "^2.0.12",
     "@types/uuidv4": "^5.0.0",
     "cross-env": "^7.0.3",
-    "express-async-errors": "^3.1.1",
     "jest": "^29.2.2",
     "sqlite3": "^5.1.2",
     "supertest": "^6.3.1",
