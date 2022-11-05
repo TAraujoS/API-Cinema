@@ -10,7 +10,6 @@ const createMovieService = async ({
   avaliation,
   duration,
   onDisplay,
-  cinema,
 }: IMovies): Promise<Movies> => {
   const moviesRepository = AppDataSource.getRepository(Movies);
   const cinemaRepository = AppDataSource.getRepository(Cinema);
@@ -23,10 +22,8 @@ const createMovieService = async ({
     throw new AppError("Movie already exists");
   }
 
-  const findCinema = await cinemaRepository.findOneBy({ id: cinema.id });
-  if (!findCinema) {
-    throw new AppError("Cinema not found");
-  }
+  const findCinema = await cinemaRepository.find();
+  
 
   const movie = moviesRepository.create({
     name,
@@ -34,7 +31,7 @@ const createMovieService = async ({
     avaliation,
     duration,
     onDisplay,
-    cinema: findCinema,
+    cinema: findCinema[0],
   });
 
   await moviesRepository.save(movie);

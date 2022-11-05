@@ -37,10 +37,10 @@ const createUserService = async ({
     isAdm,
     password: hashedPassword,
   });
-
-  if(user.password !== "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"){
-    throw new AppError("password wrong !")
-  }
+// const regex = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+//   if(user.password !== regex ){
+//     throw new AppError("password wrong !")
+//   }
   
   
   await userRepository.save(user);
