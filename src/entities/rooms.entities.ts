@@ -21,6 +21,6 @@ export class Rooms {
   @JoinColumn()
   cinema: Cinema;
 
-  @OneToMany(() => Sessions, (session) => session.room)
+  @OneToMany(() => Sessions, (session) => session.room, { cascade: true })
   sessions: Sessions[];
 }

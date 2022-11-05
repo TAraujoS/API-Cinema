@@ -11,7 +11,7 @@ const getRoomIdService = async (id: string) => {
     throw new AppError("Invalid Id or room not exists", 404);
   }
 
-  return rooms.cinema;
+  return rooms;
 };
 
 export default getRoomIdService;

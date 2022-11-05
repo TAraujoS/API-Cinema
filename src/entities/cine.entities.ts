@@ -17,6 +17,6 @@ export class Cinema {
   @OneToMany(() => Movies, (movies) => movies.cinema)
   movies: Movies[];
 
-  @OneToMany(() => Rooms, (rooms) => rooms.cinema)
+  @OneToMany(() => Rooms, (rooms) => rooms.cinema, {cascade:true} )
   rooms: Rooms[];
 }

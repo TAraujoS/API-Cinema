@@ -21,7 +21,7 @@ export class Tickets {
   @Column({ nullable: true })
   chair: number;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User,  {cascade: true})
   @JoinColumn()
   user: User;
 

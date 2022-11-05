@@ -33,15 +33,15 @@ const createRoomsService = async (capacity: number): Promise<Rooms> => {
   if (!findCinema) {
     throw new AppError("Cinema not exists", 404);
   }
-
+  
+>>>>>>> 51588fd33a985f64de41012390a52a6c0c6887ec
   const newRoom = roomsRepository.create({
     capacity,
     sessions: findSession,
-    cinema: findCinema[0],
+    cinema: findCinema[0][0],
   });
 
   await roomsRepository.save(newRoom);
-
   return newRoom;
 };
 
