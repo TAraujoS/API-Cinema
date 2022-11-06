@@ -1,7 +1,8 @@
 import { ICinema } from "../../interfaces/cine";
-import { IMovies, IMoviesRequest } from "../../interfaces/movies";
-import { IRoom, IRoomRequest } from "../../interfaces/rooms";
+import { IMoviesRequest } from "../../interfaces/movies";
+import { IRoomRequest } from "../../interfaces/rooms";
 import { ISessionRequest } from "../../interfaces/sessions";
+import { ITicketRequest } from "../../interfaces/tickets/tickets.interface";
 import {
   IUserLogin,
   IUserRequest,
@@ -37,6 +38,16 @@ export const mockedUser: IUserRequest = {
   isEmployee: false,
 };
 
+export const mockedUserExistent: IUserRequest = {
+  name: "Ana",
+  email: "ana@mail.com",
+  password: "123456",
+  isAdm: false,
+  birthDate: "1998/07/12",
+  contact: "999897898",
+  isEmployee: false,
+};
+
 export const mockedAdminLogin: IUserLogin = {
   email: "joana@mail.com",
   password: "123456",
@@ -52,7 +63,16 @@ export const mockedUserLogin: IUserLogin = {
   password: "123456",
 };
 
+export const mockedUserLoginNoExistent: IUserLogin = {
+  email: "ana@maill.com",
+  password: "123456",
+};
+
 export const mockedCinema: ICinema = {
+  name: "Cine Express",
+};
+
+export const mockedCinemaExistent: ICinema = {
   name: "Cine Express",
 };
 
@@ -98,6 +118,15 @@ export const mockedMovie3: IMoviesRequest = {
   cinema: "1",
 };
 
+export const mockedMovieExistent: IMoviesRequest = {
+  name: "Poeira em Alto Mar",
+  gender: "Adult",
+  avaliation: 5.0,
+  duration: "2:40",
+  onDisplay: true,
+  cinema: "1",
+};
+
 export const mockedSession1: ISessionRequest = {
   day: "2022/11/20",
   hour: "15:00",
@@ -119,4 +148,64 @@ export const mockedSession3: ISessionRequest = {
   movie_id: "3",
 };
 
+export const mockedSessionExistent: ISessionRequest = {
+  day: "2022/11/10",
+  hour: "21:00",
+  room_id: "3",
+  movie_id: "3",
+};
 
+export const mockedPaymentInfoJoana = {
+  name: "Joana",
+  number: "123456987456332",
+  dueDate: 2026 - 12,
+  code: "123",
+};
+
+export const mockedPaymentInfoFelipe = {
+  name: "Felipe",
+  number: "123456987456332",
+  dueDate: 2026 - 12,
+  code: "123",
+};
+
+export const mockedPaymentInfoAna = {
+  name: "Ana",
+  number: "323645789654321",
+  dueDate: 2026 - 12,
+  code: "123",
+};
+
+export const mockedPaymentInfoExistente1 = {
+  name: "Ana",
+  number: "323645789654321",
+  dueDate: 2026 - 12,
+  code: "123",
+};
+
+export const mockedPaymentInfoNumberError = {
+  name: "Ana",
+  number: "3236457896543",
+  dueDate: 2026 - 12,
+  code: "123",
+};
+
+export const mockedTicketChair1: ITicketRequest = {
+  chair: 32,
+  sessionId: "1",
+};
+
+export const mockedTicketChair2: ITicketRequest = {
+  chair: 12,
+  sessionId: "1",
+};
+
+export const mockedTicketChair3: ITicketRequest = {
+  chair: 54,
+  sessionId: "1",
+};
+
+export const mockedTicketChairError: ITicketRequest = {
+  chair: 32,
+  sessionId: "1",
+};
