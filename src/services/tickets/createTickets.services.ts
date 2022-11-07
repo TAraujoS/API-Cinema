@@ -24,6 +24,7 @@ const createTicketsService = async ({
       chair,
       session: findSession,
     },
+    relations: {user:true}
   });
 
   if (chair > 100) {
