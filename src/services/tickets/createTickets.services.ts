@@ -38,18 +38,19 @@ const createTicketsService = async ({
   if (findTicket) {
     throw new AppError("Chair is already in use");
   }
+  const findUser = await userRepository.findOneBy({
+    id: userId
+  })
 
   const ticket = ticketRepository.create({
     chair,
     session: findSession,
+    user : findUser
   });
   
-
-  // await userRepository.update({id:userId},{
-  //   tickets: ticket
-  // })
-
   await ticketRepository.save(ticket);
+
+  
 
   return ticket;
 };

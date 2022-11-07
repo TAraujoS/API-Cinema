@@ -15,12 +15,15 @@ const createPaymentServices = async (
     code,
   });
   await paymentRepository.save(paymentInfo);
+  console.log(userId)
   await userRepository.update(
     { id: userId },
     {
       paymentInfo,
     }
   );
+
+  console.log(paymentInfo)
 
   return paymentInfo;
 };
