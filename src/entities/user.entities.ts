@@ -59,7 +59,7 @@ export class User {
   paymentInfo: PaymentInfo;
 
   @ManyToOne(() => Cinema, { eager: true })
-  @JoinColumn()
+  @Exclude()
   cinema: Cinema;
 
   constructor() {

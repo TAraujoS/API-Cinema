@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import {
   Entity,
   Column,
@@ -21,12 +22,11 @@ export class Tickets {
   @Column({ nullable: true })
   chair: number;
 
-  @ManyToOne(() => User,  {cascade: true})
-  @JoinColumn()
+  @ManyToOne(() => User, { cascade: true })
+  @Exclude()
   user: User;
 
-  @OneToOne(() => Sessions)
-  @JoinColumn()
+  @ManyToOne(() => Sessions)
   session: Sessions;
 
   constructor() {
