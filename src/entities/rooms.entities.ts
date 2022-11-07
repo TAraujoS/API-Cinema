@@ -18,10 +18,10 @@ export class Rooms {
   @Column()
   capacity: number;
 
-  @ManyToOne(() => Cinema, (cinema) => cinema.id)
+  @ManyToOne(() => Cinema, (cinema) => cinema.rooms)
   @JoinColumn()
   cinema: Cinema;
 
-  @OneToMany(() => Sessions, (session) => session.id)
+  @OneToMany(() => Sessions, (session) => session.room, {cascade:true})
   sessions: Sessions[];
 }

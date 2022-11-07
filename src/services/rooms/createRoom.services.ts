@@ -14,33 +14,32 @@ const createRoomsService = async ({
   const cinemaRepository = AppDataSource.getRepository(Cinema);
 
   const findSession = await sessionRepository.find();
-
-  if (!findSession) {
-    throw new AppError("Session not exists", 404);
-  }
-
-  const findCinema = await cinemaRepository.findOneBy({ id: cinemaId });
-
-  if (!findCinema) {
-    throw new AppError("Cinema not exists", 404);
-  }
-
-  const newRoom = roomsRepository.create({
-    capacity,
-    sessions: findSession,
-    cinema: findCinema,
-  });
+  const findCinema = await cinemaRepository.find();
+  const rooms = await roomsRepository.find();
 
   if (capacity < 30) {
     throw new AppError("Minimum of 30 chairs");
   }
-
   if (capacity > 100) {
     throw new AppError("Maximum of 100 chairs");
   }
-
+  if (rooms.length > 9) {
+    throw new AppError("Only 10 rooms can be created", 404);
+  }
+  if (!findSession) {
+    throw new AppError("Session not exists", 404);
+  }
+  if (!findCinema) {
+    throw new AppError("Cinema not exists", 404);
+  }
+  
+  const newRoom = roomsRepository.create({
+    capacity,
+    sessions: findSession,
+    cinema: findCinema[0],
+  });
+  
   await roomsRepository.save(newRoom);
-
   return newRoom;
 };
 

@@ -1,22 +1,29 @@
 import { AppDataSource } from "../../data-source";
 import { PaymentInfo } from "../../entities/paymentInfo.entities";
+import { User } from "../../entities/user.entities";
 import { IPaymentRequest } from "../../interfaces/payments";
 
 const createPaymentServices = async (
-  data: IPaymentRequest
+  {name, number, dueDate, code, userId }: IPaymentRequest
 ): Promise<PaymentInfo> => {
-  const { name, number, dueDate, code } = data;
-
   const paymentRepository = AppDataSource.getRepository(PaymentInfo);
-
+  const userRepository = AppDataSource.getRepository(User);
   const paymentInfo = paymentRepository.create({
     name,
     number,
     dueDate,
     code,
   });
-
   await paymentRepository.save(paymentInfo);
+  console.log(userId)
+  await userRepository.update(
+    { id: userId },
+    {
+      paymentInfo,
+    }
+  );
+
+  console.log(paymentInfo)
 
   return paymentInfo;
 };
