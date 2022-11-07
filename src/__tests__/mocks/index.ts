@@ -127,32 +127,39 @@ export const mockedMovieExistent: IMoviesRequest = {
   cinema: "1",
 };
 
-export const mockedSession1: ISessionRequest = {
+export const mockedSession1 = {
   day: "2022/11/20",
   hour: "15:00",
   room_id: "1",
   movie_id: "1",
 };
 
-export const mockedSession2: ISessionRequest = {
+export const mockedSession2 = {
   day: "2022/11/05",
   hour: "18:00",
   room_id: "2",
   movie_id: "2",
 };
 
-export const mockedSession3: ISessionRequest = {
+export const mockedSession3 = {
   day: "2022/11/10",
   hour: "21:00",
   room_id: "3",
   movie_id: "3",
 };
 
-export const mockedSessionExistent: ISessionRequest = {
+export const mockedSessionExistent = {
   day: "2022/11/10",
   hour: "21:00",
   room_id: "3",
   movie_id: "3",
+};
+
+export const mockedSessionUpdate = {
+  day: "2022/12/10",
+  hour: "23:00",
+  room_id: "1",
+  movie_id: "2",
 };
 
 export const mockedPaymentInfoJoana = {

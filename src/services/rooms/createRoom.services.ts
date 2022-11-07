@@ -5,10 +5,14 @@ import { AppError } from "../../errors/appError";
 import { Sessions } from "../../entities/sessions.entities";
 import { Cinema } from "../../entities/cine.entities";
 
-const createRoomsService = async (capacity: number): Promise<Rooms> => {
+const createRoomsService = async ({
+  capacity,
+  cinemaId,
+}: IRoomRequest): Promise<Rooms> => {
   const roomsRepository = AppDataSource.getRepository(Rooms);
   const sessionRepository = AppDataSource.getRepository(Sessions);
   const cinemaRepository = AppDataSource.getRepository(Cinema);
+
   const findSession = await sessionRepository.find();
   const findCinema = await cinemaRepository.find();
   const rooms = await roomsRepository.find();
