@@ -7,6 +7,7 @@ import updateUserController from "../controllers/user/updateUser.controller";
 import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
 import ensureUpdateMiddleware from "../middlewares/ensureUpdate.middleware";
 import ensureIsEmployeeAdmMiddleware from "../middlewares/ensureIsEmployeeAdm.middleware";
+import ensureIdUserMiddleware from "../middlewares/ensureIdUser.middleware";
 
 const userRoutes = Router();
 
@@ -27,6 +28,7 @@ userRoutes.patch(
   "/:id",
   ensureAuthMiddleware,
   ensureUpdateMiddleware,
+  ensureIdUserMiddleware,
   updateUserController
 );
 userRoutes.delete(

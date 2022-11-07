@@ -139,4 +139,17 @@ describe("Testing payment route", () => {
 
     expect(responseWrongNumber.status).toBe(401);
   });
+
+  test("DELETE /paymentInfo - Should be able to update payment data", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const responseMatchIdUser = await request(app)
+      .post("/paymentInfo")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentInfoNumberError);
+
+    expect(responseMatchIdUser.status).toBe(401);
+  });
 });

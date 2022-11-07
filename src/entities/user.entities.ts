@@ -51,15 +51,15 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Tickets, (tickets) => tickets.user)
+  @OneToMany(() => Tickets, (tickets) => tickets.user, {eager:true})
   tickets: Tickets[];
 
-  @OneToOne(() => PaymentInfo, { eager: true })
+  @OneToOne(() => PaymentInfo, { eager: true, cascade:true })
   @JoinColumn()
   paymentInfo: PaymentInfo;
 
   @ManyToOne(() => Cinema, { eager: true })
-  @JoinColumn()
+  @Exclude()
   cinema: Cinema;
 
   constructor() {

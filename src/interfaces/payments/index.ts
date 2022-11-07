@@ -3,4 +3,5 @@ export interface IPaymentRequest {
   number: string;
   dueDate: string;
   code: string;
+  userId: string;
 }
