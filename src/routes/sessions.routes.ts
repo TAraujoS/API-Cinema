@@ -17,9 +17,12 @@ sessionsRouter.post(
   createSessionController
 );
 
-sessionsRouter.get("", ensureAuthMiddleware, listSessionController);
-
-sessionsRouter.patch("/:id", ensureAuthMiddleware, updateSessionController);
+sessionsRouter.patch(
+  "/:id",
+  ensureAuthMiddleware,
+  ensureIsEmployeeMiddleware,
+  updateSessionController
+);
 
 sessionsRouter.delete(
   "/:id",
@@ -28,10 +31,11 @@ sessionsRouter.delete(
   deleteSessionController
 );
 
+sessionsRouter.get("", ensureAuthMiddleware, listSessionController);
+
 sessionsRouter.get(
   "/movie/:id",
   ensureAuthMiddleware,
-  ensureIsAdmMiddleware,
   listSessionWithMovieIdController
 );
 

@@ -4,7 +4,6 @@ import { Rooms } from "../../entities/rooms.entities";
 import { Sessions } from "../../entities/sessions.entities";
 import { AppError } from "../../errors/appError";
 import { ISessionRequest } from "../../interfaces/sessions";
-import { normalizeDateService } from "./normalizaSchedule.services";
 
 const createSessionService = async ({
   day,
@@ -22,8 +21,6 @@ const createSessionService = async ({
 
   const newMovie = await moviesRepositories.findOneBy({ id: movie_id });
 
-  const data = await normalizeDateService(day, hour);
-
   if (!newRoom) {
     throw new AppError("This room dont exist", 404);
   }
@@ -32,20 +29,23 @@ const createSessionService = async ({
     throw new AppError("This movie dont exist", 404);
   }
 
-  const sessionExist = await sessionRepository.findOneBy({
-    day: data.fullDate,
+  const sessionExist = await sessionRepository.findOne({
+    where: {
+      day,
+      hour,
+    },
   });
 
   if (sessionExist) {
     throw new AppError(
       "There is already a section scheduled with this date and time in this room",
-      404
+      400
     );
   }
 
   const newSession = sessionRepository.create({
-    day: data.fullDate,
-    hour: hour,
+    day,
+    hour,
     room: newRoom,
     movie: newMovie,
   });
