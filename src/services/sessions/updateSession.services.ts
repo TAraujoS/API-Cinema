@@ -4,7 +4,6 @@ import { Rooms } from "../../entities/rooms.entities";
 import { Sessions } from "../../entities/sessions.entities";
 import { AppError } from "../../errors/appError";
 import { ISessionUpdate } from "../../interfaces/sessions";
-import { normalizeDateService } from "./normalizaSchedule.services";
 
 const updateSessionService = async (
   { day, hour, room_id, movie_id }: ISessionUpdate,

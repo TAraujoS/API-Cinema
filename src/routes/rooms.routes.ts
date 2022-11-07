@@ -10,7 +10,12 @@ import ensureIsEmployeeAdmMiddleware from "../middlewares/ensureIsEmployeeAdm.mi
 
 const roomsRoutes = Router();
 
-roomsRoutes.post("", createRoomController);
+roomsRoutes.post(
+  "",
+  ensureAuthMiddleware,
+  ensureIsAdmMiddleware,
+  createRoomController
+);
 roomsRoutes.get("", ensureAuthMiddleware, getRoomsController);
 roomsRoutes.get("/:id", ensureAuthMiddleware, getRoomIdController);
 roomsRoutes.patch(
