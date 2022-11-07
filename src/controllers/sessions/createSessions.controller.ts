@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Session } from "inspector";
 import createSessionService from "../../services/sessions/createSessions.services";
 
 const createSessionController = async (req: Request, res: Response) => {

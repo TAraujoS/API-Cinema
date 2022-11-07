@@ -6,22 +6,12 @@ import { Sessions } from "../../entities/sessions.entities";
 import { Cinema } from "../../entities/cine.entities";
 
 const createRoomsService = async ({
-  roomId,
   capacity,
   cinemaId,
 }: IRoomRequest): Promise<Rooms> => {
   const roomsRepository = AppDataSource.getRepository(Rooms);
   const sessionRepository = AppDataSource.getRepository(Sessions);
   const cinemaRepository = AppDataSource.getRepository(Cinema);
-
-  //let day: Date = new Date();
-  //const date: string = `${day.getDate()}/${day.getMonth()}/${day.getFullYear()}, ${day.getHours()}:${day.getMinutes()}:${day.getSeconds()}`;
-
-  const roomsId = await roomsRepository.findOneBy({ id: roomId });
-
-  /*if (roomsId) {
-    throw new AppError("This room already exists", 400);
-  }*/
 
   const findSession = await sessionRepository.find();
 

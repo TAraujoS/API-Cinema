@@ -1,6 +1,6 @@
 export interface ISessionRequest {
-  day: string;
-  hour: string;
+  day: Date;
+  hour: Date;
   room_id: string;
   movie_id: string;
 }
