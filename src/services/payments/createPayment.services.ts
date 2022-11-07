@@ -44,8 +44,6 @@ const createPaymentServices = async ({
     }
   );
 
-  console.log(paymentInfo);
-
   return paymentInfo;
 };
 

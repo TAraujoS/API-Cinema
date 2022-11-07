@@ -164,49 +164,56 @@ export const mockedSessionUpdate = {
 
 export const mockedPaymentInfoJoana = {
   name: "Joana",
-  number: "123456987456332",
+  number: "1234569874563320",
   dueDate: "2026-12",
   code: "123",
 };
 
 export const mockedPaymentInfoFelipe = {
   name: "Felipe",
-  number: "123456987456332",
+  number: "1234569874563320",
   dueDate: "2026-12",
   code: "123",
 };
 
 export const mockedPaymentInfoAna = {
   name: "Ana",
-  number: "323645789654321",
+  number: "3236457896543210",
   dueDate: "2026-12",
   code: "123",
 };
 
+export const mockedPaymentPatchInfoAna = {
+  name: "Ana",
+  number: "3236457896543210",
+  dueDate: "2026-12",
+  code: "456",
+};
+
 export const mockedPaymentInfoExistente1 = {
   name: "Ana",
-  number: "323645789654321",
+  number: "3236457896543210",
   dueDate: "2026-12",
   code: "123",
 };
 
 export const mockedPaymentInfoNumberError = {
   name: "Ana",
-  number: "3236457896543",
+  number: "32364578965403",
   dueDate: "2026-12",
   code: "123",
 };
 
 export const mockedPaymentInfoCodeError = {
   name: "Ana",
-  number: "3236457896543",
+  number: "32364578960543",
   dueDate: "2026-12",
   code: "13",
 };
 
 export const mockedPaymentInfoDueDateError = {
   name: "Ana",
-  number: "3236457896543",
+  number: "32364578960543",
   dueDate: "",
   code: "123",
 };

@@ -4,7 +4,6 @@ import deletePaymentController from "../controllers/payment/deletePayment.contro
 import updatePaymentController from "../controllers/payment/updatePayment.controller";
 import listPaymentController from "../controllers/payment/listPayment.controller";
 import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
-import ensureUpdateMiddleware from "../middlewares/ensureUpdate.middleware";
 import ensureIdUserMiddleware from "../middlewares/ensureIdUser.middleware";
 
 const paymentRoutes = Router();
@@ -22,7 +21,7 @@ paymentRoutes.patch(
   updatePaymentController
 );
 paymentRoutes.get(
-  "/:id",
+  "",
   ensureAuthMiddleware,
   ensureIdUserMiddleware,
   listPaymentController
