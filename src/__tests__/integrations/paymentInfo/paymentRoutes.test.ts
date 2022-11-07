@@ -2,37 +2,18 @@ import request from "supertest";
 import app from "../../../app";
 import { DataSource } from "typeorm";
 import { AppDataSource } from "../../../data-source";
-import { IPaymentRequest } from "../../../interfaces/payments";
+import {
+  mockedPaymentInfoJoana,
+  mockedPaymentInfoFelipe,
+  mockedPaymentInfoAna,
+  mockedPaymentInfoExistente1,
+  mockedPaymentInfoNumberError,
+  mockedPaymentInfoCodeError,
+  mockedPaymentInfoDueDateError,
+  mockedUserLogin,
+} from "../../mocks";
 
-const paymentData: IPaymentRequest = {
-  name: "Maria Joaquina",
-  number: "1478523698745632",
-  dueDate: "2022-12-24",
-  code: "123",
-};
-
-const paymentWrongNumber: IPaymentRequest = {
-  name: "Maria Joaquina",
-  number: "147852369874563",
-  dueDate: "2022-12-24",
-  code: "123",
-};
-
-const paymentWrongCode: IPaymentRequest = {
-  name: "Maria Joaquina",
-  number: "147852369874563",
-  dueDate: "2022-12-24",
-  code: "12",
-};
-
-const paymentNoDueDate: IPaymentRequest = {
-  name: "Maria Joaquina",
-  number: "147852369874563",
-  dueDate: "",
-  code: "123",
-};
-
-describe("Testando rotas de informações de pagamento", () => {
+describe("Testing payment route", () => {
   let connection: DataSource;
 
   beforeAll(async () => {
@@ -49,29 +30,113 @@ describe("Testando rotas de informações de pagamento", () => {
     await connection.destroy();
   });
 
-  test("POST /paymentInfo : Deve ser capaz de criar novos dados de pagamento", async () => {
-    const responseCreate = await request(app)
+  test("POST /paymentInfo - Should be able to create a new payment data", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const responseCreate1 = await request(app)
       .post("/paymentInfo")
-      .send(paymentData);
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentInfoAna);
+
+    expect(responseCreate1.status).toBe(201);
+    expect(responseCreate1.body).toHaveProperty("id");
+    expect(responseCreate1.body).not.toHaveProperty("code");
+  });
+
+  test("POST /paymentInfo - Should be able to create a new payment data", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const responseCreate2 = await request(app)
+      .post("/paymentInfo")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentInfoFelipe);
+
+    expect(responseCreate2.status).toBe(201);
+    expect(responseCreate2.body).toHaveProperty("id");
+    expect(responseCreate2.body).not.toHaveProperty("code");
+  });
+
+  test("POST /paymentInfo - Should be able to create a new payment data", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const responseCreate3 = await request(app)
+      .post("/paymentInfo")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentInfoJoana);
+
+    expect(responseCreate3.status).toBe(201);
+    expect(responseCreate3.body).toHaveProperty("id");
+    expect(responseCreate3.body).not.toHaveProperty("code");
+  });
+
+  test("POST /paymentInfo - Not should be able to create a new payment data", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
 
     const responseWrongNumber = await request(app)
       .post("/paymentInfo")
-      .send(paymentWrongNumber);
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentInfoNumberError);
+
+    expect(responseWrongNumber.status).toBe(401);
+  });
+
+  test("POST /paymentInfo - Not should be able to create a new payment data", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
 
     const responseWrongCode = await request(app)
       .post("/paymentInfo")
-      .send(paymentWrongCode);
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentInfoCodeError);
 
-    const responseNoDueData = await request(app)
+    expect(responseWrongCode.status).toBe(401);
+  });
+
+  test("POST /paymentInfo - Not should be able to create a new payment data", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const responseInfoAlreadyExists = await request(app)
       .post("/paymentInfo")
-      .send(paymentNoDueDate);
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentInfoExistente1);
 
-    expect(responseCreate.status).toBe(201);
-    expect(responseWrongNumber.status).toBe(400);
-    expect(responseWrongCode.status).toBe(400);
-    expect(responseNoDueData.status).toBe(400);
+    expect(responseInfoAlreadyExists.status).toBe(401);
+  });
 
-    expect(responseCreate.body).toHaveProperty("id");
-    expect(responseCreate.body).not.toHaveProperty("code");
+  test("POST /paymentInfo - Not should be able to create a new payment data", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const responseInfoDueDateNotExists = await request(app)
+      .post("/paymentInfo")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentInfoDueDateError);
+
+    expect(responseInfoDueDateNotExists.status).toBe(401);
+  });
+
+  test("PATCH /paymentInfo - Should be able to update payment data", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const responseWrongNumber = await request(app)
+      .post("/paymentInfo")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentInfoNumberError);
+
+    expect(responseWrongNumber.status).toBe(401);
   });
 });

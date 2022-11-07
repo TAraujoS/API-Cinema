@@ -190,6 +190,20 @@ export const mockedPaymentInfoNumberError = {
   code: "123",
 };
 
+export const mockedPaymentInfoCodeError = {
+  name: "Ana",
+  number: "3236457896543",
+  dueDate: 2026 - 12,
+  code: "13",
+};
+
+export const mockedPaymentInfoDueDateError = {
+  name: "Ana",
+  number: "3236457896543",
+  dueDate: "",
+  code: "123",
+};
+
 export const mockedTicketChair1: ITicketRequest = {
   chair: 32,
   sessionId: "1",

@@ -11,15 +11,15 @@ const createPaymentServices = async (
   const paymentRepository = AppDataSource.getRepository(PaymentInfo);
 
   if (number.length !== 16) {
-    throw new AppError("Invalid card number", 400);
+    throw new AppError("Invalid card number", 401);
   }
 
   if (!dueDate) {
-    throw new AppError("Date is required", 400);
+    throw new AppError("Date is required", 401);
   }
 
   if (code.length !== 3) {
-    throw new AppError("Invalid code number", 400);
+    throw new AppError("Invalid code number", 401);
   }
 
   const paymentInfo = paymentRepository.create({
