@@ -7,4 +7,4 @@ const listMoviesController = async (req: Request, res: Response) => {
   return res.json(movies);
 };
 
-export { listMoviesController };
+export default listMoviesController;

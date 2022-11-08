@@ -19,11 +19,11 @@ const createSessionService = async ({
   const newMovie = await moviesRepositories.findOneBy({ id: movieId });
 
   if (!newRoom) {
-    throw new AppError("This room dont exist", 404);
+    throw new AppError("This room dont exist", 400);
   }
 
   if (!newMovie) {
-    throw new AppError("This movie dont exist", 404);
+    throw new AppError("This movie dont exist", 400);
   }
 
   const sessionExist = await sessionRepository.findOne({

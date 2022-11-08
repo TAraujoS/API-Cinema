@@ -54,7 +54,7 @@ export class User {
   @OneToMany(() => Tickets, (tickets) => tickets.user, { eager: true })
   tickets: Tickets[];
 
-  @OneToOne(() => PaymentInfo, { eager: true, cascade: true })
+  @OneToOne(() => PaymentInfo, { eager: true, onDelete: "CASCADE" })
   @JoinColumn()
   paymentInfo: PaymentInfo;
 
