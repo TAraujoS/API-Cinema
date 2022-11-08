@@ -47,7 +47,7 @@ describe("/cinema", () => {
     expect(cinemaCreateResponse.status).toBe(201);
   });
 
-  test("POST /cinema -  should be able to create a cinema already exist", async () => {
+  test("POST /cinema -  not should be able to create a cinema already exist", async () => {
     const adminLoginResponse = await request(app)
       .post("/login")
       .send(mockedAdmin);
@@ -59,6 +59,20 @@ describe("/cinema", () => {
 
     expect(cinemaCreateResponse.body).toHaveProperty("message");
     expect(cinemaCreateResponse.status).toBe(400);
+  });
+
+  test("POST /cinema -  must not be able to create a cinema without authorization", async () => {
+    const adminUserResponse = await request(app)
+      .post("/login")
+      .send(mockedUser);
+
+    const cinemaCreateResponse = await request(app)
+      .post("/cinema")
+      .set("Authorization", `Bearer ${adminUserResponse.body.token}`)
+      .send(mockedCinemaExistent);
+
+    expect(cinemaCreateResponse.body).toHaveProperty("message");
+    expect(cinemaCreateResponse.status).toBe(401);
   });
 
   test("PATCH /cinema -  should be able to update a cinema", async () => {
