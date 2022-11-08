@@ -1,12 +1,5 @@
 import { Exclude } from "class-transformer";
-import {
-  Entity,
-  Column,
-  OneToOne,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Entity, Column, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Sessions } from "./sessions.entities";
 import { User } from "./user.entities";
 import { v4 as uuid } from "uuid";

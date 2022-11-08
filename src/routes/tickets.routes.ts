@@ -10,12 +10,14 @@ import ensureIdUserMiddleware from "../middlewares/ensureIdUser.middleware";
 const ticketsRoutes = Router();
 
 ticketsRoutes.post("", ensureAuthMiddleware, createTicketsController);
+
 ticketsRoutes.get(
   "",
   ensureAuthMiddleware,
   ensureIsEmployeeAdmMiddleware,
   listAllTicketsController
 );
+
 ticketsRoutes.get(
   "/:id",
   ensureAuthMiddleware,

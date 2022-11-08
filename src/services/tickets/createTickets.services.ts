@@ -11,13 +11,10 @@ const createTicketsService = async ({
   userId,
 }: ITicketRequest): Promise<Tickets> => {
   const ticketRepository = AppDataSource.getRepository(Tickets);
-
   const sessionsRepository = AppDataSource.getRepository(Sessions);
-
   const userRepository = AppDataSource.getRepository(User);
 
   const findSession = await sessionsRepository.findOneBy({ id: sessionId });
-
   const findTicket = await ticketRepository.findOne({
     where: {
       chair,

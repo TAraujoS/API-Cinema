@@ -12,13 +12,16 @@ const createPaymentServices = async ({
 }: IPaymentRequest): Promise<PaymentInfo> => {
   const paymentRepository = AppDataSource.getRepository(PaymentInfo);
   const userRepository = AppDataSource.getRepository(User);
+
   const paymentInfo = paymentRepository.create({
     name,
     number,
     dueDate,
     code,
   });
+
   await paymentRepository.save(paymentInfo);
+
   await userRepository.update(
     { id: userId },
     {
