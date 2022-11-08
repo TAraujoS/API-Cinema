@@ -32,7 +32,7 @@ describe("Testing payment route", () => {
       });
     await request(app).post("/users").send(mockedAdmin);
     await request(app).post("/users").send(mockedEmployee);
-    await request(app).post("/users").send(mockedUser);
+    var mockedUserId = await request(app).post("/users").send(mockedUser);
   });
 
   afterAll(async () => {
@@ -136,7 +136,7 @@ describe("Testing payment route", () => {
     expect(responseInfoDueDateNotExists.status).toBe(400);
   });
 
-  test("PATCH /paymentInfo - Should be able to update payment data", async () => {
+  test("PATCH /paymentInfo/:id - Should be able to update payment data", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedUserLogin);
@@ -153,7 +153,7 @@ describe("Testing payment route", () => {
     expect(responsePatchData.status).toBe(200);
   });
 
-  test("DELETE /paymentInfo - Should be able to delete payment data", async () => {
+  test("DELETE /paymentInfo-/:id - Should be able to delete payment data", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedUserLogin);

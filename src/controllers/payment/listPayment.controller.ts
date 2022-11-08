@@ -3,7 +3,7 @@ import listPaymentServices from "../../services/payments/listPayment.services";
 
 const listPaymentController = async (req: Request, res: Response) => {
   const { id } = req.user;
-  console.log(id);
+
   const listPayment = await listPaymentServices(id);
 
   res.status(200).json(listPayment);

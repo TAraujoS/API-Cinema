@@ -12,6 +12,7 @@ const createPaymentServices = async ({
   userId,
 }: IPaymentRequest): Promise<PaymentInfo> => {
   const paymentRepository = AppDataSource.getRepository(PaymentInfo);
+  const userRepository = AppDataSource.getRepository(User);
 
   if (number.length !== 16) {
     throw new AppError("Invalid card number", 400);
@@ -27,7 +28,14 @@ const createPaymentServices = async ({
     throw new AppError("Invalid code number", 400);
   }
 
-  const userRepository = AppDataSource.getRepository(User);
+  const findPayment = await paymentRepository.findOne({
+    where: { name, number },
+  });
+
+  if (findPayment) {
+    throw new AppError("Payment already exists", 400);
+  }
+
   const paymentInfo = paymentRepository.create({
     name,
     number,

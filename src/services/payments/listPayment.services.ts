@@ -8,7 +8,7 @@ const listPaymentServices = async (id: string) => {
   const userRepository = AppDataSource.getRepository(User);
 
   const findUser = await userRepository.findOneBy({ id });
-  console.log(findUser);
+
   if (!findUser.paymentInfo) {
     throw new AppError("Data not found", 404);
   }
