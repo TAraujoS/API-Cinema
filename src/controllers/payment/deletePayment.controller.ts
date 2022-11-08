@@ -6,7 +6,7 @@ const deletePaymentController = async (req: Request, res: Response) => {
 
   await deletePaymentServices(id);
 
-  return res.status(204).send();
+  return res.status(204).json("");
 };
 
 export default deletePaymentController;

@@ -6,7 +6,7 @@ const deleteMovieController = async (req: Request, res: Response) => {
 
   await deleteMovieService(id);
 
-  return res.status(204).send();
+  return res.status(204).json("");
 };
 
-export { deleteMovieController };
+export default deleteMovieController;

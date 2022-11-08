@@ -14,7 +14,7 @@ export class PaymentInfo {
   number: string;
 
   @Column({ type: "date" })
-  dueDate: Date;
+  dueDate: string;
 
   @Column({ length: 3 })
   @Exclude()
