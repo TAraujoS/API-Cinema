@@ -12,13 +12,10 @@ const createSessionService = async ({
   movie_id,
 }: ISessionRequest) => {
   const sessionRepository = AppDataSource.getRepository(Sessions);
-
   const roomsRepositories = AppDataSource.getRepository(Rooms);
-
   const moviesRepositories = AppDataSource.getRepository(Movies);
 
   const newRoom = await roomsRepositories.findOneBy({ id: room_id });
-
   const newMovie = await moviesRepositories.findOneBy({ id: movie_id });
 
   if (!newRoom) {
