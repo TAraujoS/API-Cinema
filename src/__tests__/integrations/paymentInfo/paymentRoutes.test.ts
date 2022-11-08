@@ -165,7 +165,6 @@ describe("Testing payment route", () => {
       .get("/paymentInfo")
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
 
-    console.log(getPayment.body);
     const responseMatchIdUser = await request(app)
       .delete(`/paymentInfo/${getPayment.body.id}`)
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
