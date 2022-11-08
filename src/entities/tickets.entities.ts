@@ -25,7 +25,7 @@ export class Tickets {
   @JoinColumn()
   user: User;
 
-  @OneToOne(() => Sessions)
+  @OneToOne(() => Sessions, { onDelete: "CASCADE" })
   @JoinColumn()
   session: Sessions;
 }

@@ -20,10 +20,8 @@ export class Sessions {
   hour: Date;
 
   @ManyToOne(() => Rooms, { eager: true })
-  @JoinColumn()
   room: Rooms;
 
-  @ManyToOne(() => Movies, { eager: true })
-  @JoinColumn()
+  @ManyToOne(() => Movies, { eager: true, onDelete: "CASCADE" })
   movie: Movies;
 }
