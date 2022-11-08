@@ -28,13 +28,13 @@ The Movie object is defined as:
 
 <br>
 
-| Method | Routes            | Description                                |
-| ------ | ----------------- | ------------------------------------------ |
-| POST   | /movies           | Create movie                               |
-| GET    | /movies           | List all movies                            |
-| GET    | /movies/:movie_id | List a movie using its ID as a parameter   |
-| PATCH  | /movies/:movie_id | Update a movie using its ID as a parameter |
-| DELETE | /movies/:movie_id | Delete a movie using its ID as a parameter |
+| Method | Routes            | Description                                   |
+| ------ | ----------------- | --------------------------------------------- |
+| POST   | /movies           | To create a new                               |
+| GET    | /movies           | To list all movies                            |
+| GET    | /movies/:movie_id | To list a movie using its ID as a parameter   |
+| PATCH  | /movies/:movie_id | To update a movie using its ID as a parameter |
+| DELETE | /movies/:movie_id | To delete a movie using its ID as a parameter |
 
 ---
 
@@ -46,7 +46,7 @@ The Movie object is defined as:
 
 <br>
 
-## POST `/movies`
+## POST - `/movies`
 
 <br>
 
@@ -127,7 +127,7 @@ The Movie object is defined as:
 
 <br>
 
-## GET `/movies`
+## GET - `/movies`
 
 <br>
 
@@ -195,13 +195,13 @@ The Movie object is defined as:
 
 <br>
 
-## GET `/movies/movieId`
+## GET - `/movies/movieId`
 
 <br>
 
 ### **Request**:
 
-- POST /users
+- GET /users
 - Host: https://cine-express-projeto-m4.herokuapp.com/movies/movieId
 - Authorization: Bearer Token
 - Content-type: application/json
@@ -261,7 +261,7 @@ The Movie object is defined as:
 
 <br>
 
-## PATCH `/movies/movieId`
+## PATCH - `/movies/movieId`
 
 <br>
 
@@ -351,7 +351,7 @@ The Movie object is defined as:
 
 <br>
 
-## GET `/movies/movieId`
+## DELETE - `/movies/movieId`
 
 <br>
 

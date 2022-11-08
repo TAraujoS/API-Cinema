@@ -139,6 +139,23 @@ describe("Testing payment route", () => {
     expect(responseInfoDueDateNotExists.status).toBe(400);
   });
 
+  test("GET /paymentInfo - Should be able list payment data", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const getPayment = await request(app)
+      .get("/paymentInfo")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
+
+    const responseGetData = await request(app)
+      .patch(`/paymentInfo/${getPayment.body.id}`)
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentPatchInfoAna);
+
+    expect(responseGetData.status).toBe(200);
+  });
+
   test("PATCH /paymentInfo/:id - Should be able to update payment data", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
