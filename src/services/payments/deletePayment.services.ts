@@ -4,6 +4,7 @@ import { AppError } from "../../errors/appError";
 
 const deletePaymentServices = async (id: string) => {
   const paymentRepository = AppDataSource.getRepository(PaymentInfo);
+
   const idPayment = paymentRepository.findOneBy({
     id: id,
   });

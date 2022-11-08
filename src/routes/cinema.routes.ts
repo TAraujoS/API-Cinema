@@ -13,6 +13,7 @@ cinemaRoutes.post(
   ensureIsAdmMiddleware,
   createCinemaController
 );
+
 cinemaRoutes.patch(
   "/:id",
   ensureAuthMiddleware,

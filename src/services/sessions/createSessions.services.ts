@@ -8,18 +8,15 @@ import { ISessionRequest } from "../../interfaces/sessions";
 const createSessionService = async ({
   day,
   hour,
-  room_id,
-  movie_id,
+  roomId,
+  movieId,
 }: ISessionRequest) => {
   const sessionRepository = AppDataSource.getRepository(Sessions);
-
   const roomsRepositories = AppDataSource.getRepository(Rooms);
-
   const moviesRepositories = AppDataSource.getRepository(Movies);
 
-  const newRoom = await roomsRepositories.findOneBy({ id: room_id });
-
-  const newMovie = await moviesRepositories.findOneBy({ id: movie_id });
+  const newRoom = await roomsRepositories.findOneBy({ id: roomId });
+  const newMovie = await moviesRepositories.findOneBy({ id: movieId });
 
   if (!newRoom) {
     throw new AppError("This room dont exist", 404);

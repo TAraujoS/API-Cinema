@@ -17,14 +17,18 @@ movieRoutes.post(
   ensureIsAdmMiddleware,
   createMovieController
 );
+
 movieRoutes.get("", ensureAuthMiddleware, listMoviesController);
+
 movieRoutes.get("/:id", ensureAuthMiddleware, listMoviesByIdController);
+
 movieRoutes.patch(
   "/:id",
   ensureAuthMiddleware,
   ensureIsEmployeeMiddleware,
   updateMovieController
 );
+
 movieRoutes.delete(
   "/:id",
   ensureAuthMiddleware,
