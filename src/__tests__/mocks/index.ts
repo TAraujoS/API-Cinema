@@ -1,6 +1,6 @@
 import { ICinema } from "../../interfaces/cine";
 import { IMoviesRequest } from "../../interfaces/movies";
-import { IRoomRequest } from "../../interfaces/rooms";
+import { IRoomRequest, IRoomUpdate } from "../../interfaces/rooms";
 import { ISessionRequest } from "../../interfaces/sessions";
 import { ITicketRequest } from "../../interfaces/tickets/tickets.interface";
 import {
@@ -89,6 +89,10 @@ export const mockedRoom2: IRoomRequest = {
 export const mockedRoom3: IRoomRequest = {
   capacity: 100,
   cinemaId: "1",
+};
+
+export const mockedRoomUpdate: IRoomUpdate = {
+  capacity: 50,
 };
 
 export const mockedMovie1: IMoviesRequest = {

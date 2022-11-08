@@ -23,7 +23,7 @@ const createRoomsService = async ({
   if (capacity > 100) {
     throw new AppError("Maximum of 100 chairs");
   }
-  if (rooms.length > 9) {
+  if (rooms.length > 10) {
     throw new AppError("Only 10 rooms can be created", 404);
   }
   if (!findSession) {
@@ -32,13 +32,13 @@ const createRoomsService = async ({
   if (!findCinema) {
     throw new AppError("Cinema not exists", 404);
   }
-  
+
   const newRoom = roomsRepository.create({
     capacity,
     sessions: findSession,
     cinema: findCinema[0],
   });
-  
+
   await roomsRepository.save(newRoom);
   return newRoom;
 };
