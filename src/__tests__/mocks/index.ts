@@ -2,11 +2,8 @@ import { ICinema } from "../../interfaces/cine";
 import { IMoviesRequest } from "../../interfaces/movies";
 import { IRoomRequest, IRoomUpdate } from "../../interfaces/rooms";
 import { ISessionRequest } from "../../interfaces/sessions";
-import { ITicketRequest } from "../../interfaces/tickets/tickets.interface";
-import {
-  IUserLogin,
-  IUserRequest,
-} from "../../interfaces/user/users.interface";
+import { ITicketRequest } from "../../interfaces/tickets";
+import { IUserLogin, IUserRequest } from "../../interfaces/user";
 
 export const mockedAdmin: IUserRequest = {
   name: "Joana",
