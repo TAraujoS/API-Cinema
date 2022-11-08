@@ -13,6 +13,7 @@ import { handleErrorMiddleware } from "./middlewares/handleError.middleware";
 
 const app = express();
 app.use(express.json());
+
 app.use("/users", userRoutes);
 app.use("/login", loginRoutes);
 app.use("/paymentInfo", paymentRoutes);
@@ -21,6 +22,7 @@ app.use("/movies", movieRoutes);
 app.use("/sessions", sessionsRouter);
 app.use("/cinema", cinemaRoutes);
 app.use("/tickets", ticketsRoutes);
+
 app.use(handleErrorMiddleware);
 
 export default app;

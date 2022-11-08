@@ -2,7 +2,6 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -22,6 +21,6 @@ export class Rooms {
   @JoinColumn()
   cinema: Cinema;
 
-  @OneToMany(() => Sessions, (session) => session.room, {cascade:true})
+  @OneToMany(() => Sessions, (session) => session.room, { cascade: true })
   sessions: Sessions[];
 }
