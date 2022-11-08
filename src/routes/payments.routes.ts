@@ -8,29 +8,9 @@ import ensureIdUserMiddleware from "../middlewares/ensureIdUser.middleware";
 
 const paymentRoutes = Router();
 
-paymentRoutes.post(
-  "",
-  ensureAuthMiddleware,
-  ensureIdUserMiddleware,
-  createPaymentController
-);
-paymentRoutes.patch(
-  "/:id",
-  ensureAuthMiddleware,
-  ensureIdUserMiddleware,
-  updatePaymentController
-);
-paymentRoutes.get(
-  "",
-  ensureAuthMiddleware,
-  ensureIdUserMiddleware,
-  listPaymentController
-);
-paymentRoutes.delete(
-  "/:id",
-  ensureAuthMiddleware,
-  ensureIdUserMiddleware,
-  deletePaymentController
-);
+paymentRoutes.post("", ensureAuthMiddleware, createPaymentController);
+paymentRoutes.patch("/:id", ensureAuthMiddleware, updatePaymentController);
+paymentRoutes.get("", ensureAuthMiddleware, listPaymentController);
+paymentRoutes.delete("/:id", ensureAuthMiddleware, deletePaymentController);
 
 export default paymentRoutes;

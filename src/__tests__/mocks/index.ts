@@ -187,18 +187,18 @@ export const mockedPaymentInfoAna = {
   code: "123",
 };
 
-export const mockedPaymentPatchInfoAna = {
-  name: "Ana",
-  number: "3236457896543210",
-  dueDate: "2026-12",
-  code: "456",
-};
-
 export const mockedPaymentInfoExistente1 = {
   name: "Ana",
   number: "3236457896543210",
   dueDate: "2026-12",
   code: "123",
+};
+
+export const mockedPaymentPatchInfoAna = {
+  name: "Ana",
+  number: "3236457896543210",
+  dueDate: "2026-12",
+  code: "456",
 };
 
 export const mockedPaymentInfoNumberError = {

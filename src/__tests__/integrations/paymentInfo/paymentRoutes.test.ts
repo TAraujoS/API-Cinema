@@ -2,7 +2,6 @@ import request from "supertest";
 import app from "../../../app";
 import { DataSource } from "typeorm";
 import { AppDataSource } from "../../../data-source";
-import jwt from "jsonwebtoken";
 import {
   mockedPaymentInfoJoana,
   mockedPaymentInfoFelipe,
@@ -12,15 +11,18 @@ import {
   mockedPaymentInfoCodeError,
   mockedPaymentInfoDueDateError,
   mockedUserLogin,
-  mockedUserExistent,
   mockedAdmin,
   mockedEmployee,
   mockedUser,
   mockedPaymentPatchInfoAna,
+  mockedEmployeeLogin,
 } from "../../mocks";
 
 describe("Testing payment route", () => {
   let connection: DataSource;
+  let anaResponse;
+  let felipeResponse;
+  let joanaResponse;
 
   beforeAll(async () => {
     await AppDataSource.initialize()
@@ -30,9 +32,10 @@ describe("Testing payment route", () => {
       .catch((error) => {
         console.log(error);
       });
-    await request(app).post("/users").send(mockedAdmin);
-    await request(app).post("/users").send(mockedEmployee);
-    var mockedUserId = await request(app).post("/users").send(mockedUser);
+
+    joanaResponse = await request(app).post("/users").send(mockedAdmin);
+    felipeResponse = await request(app).post("/users").send(mockedEmployee);
+    anaResponse = await request(app).post("/users").send(mockedUser);
   });
 
   afterAll(async () => {
@@ -47,7 +50,7 @@ describe("Testing payment route", () => {
     const responseCreate1 = await request(app)
       .post("/paymentInfo")
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
-      .send(mockedPaymentInfoAna);
+      .send({ ...mockedPaymentInfoAna, userId: anaResponse.body.id });
 
     expect(responseCreate1.status).toBe(201);
     expect(responseCreate1.body).toHaveProperty("id");
@@ -57,12 +60,12 @@ describe("Testing payment route", () => {
   test("POST /paymentInfo - Should be able to create a new payment data", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
-      .send(mockedUserLogin);
+      .send(mockedEmployeeLogin);
 
     const responseCreate2 = await request(app)
       .post("/paymentInfo")
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
-      .send(mockedPaymentInfoFelipe);
+      .send({ ...mockedPaymentInfoFelipe, userId: felipeResponse.body.id });
 
     expect(responseCreate2.status).toBe(201);
     expect(responseCreate2.body).toHaveProperty("id");
@@ -72,12 +75,12 @@ describe("Testing payment route", () => {
   test("POST /paymentInfo - Should be able to create a new payment data", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
-      .send(mockedUserLogin);
+      .send(mockedAdmin);
 
     const responseCreate3 = await request(app)
       .post("/paymentInfo")
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
-      .send(mockedPaymentInfoJoana);
+      .send({ ...mockedPaymentInfoJoana, userId: joanaResponse.body.id });
 
     expect(responseCreate3.status).toBe(201);
     expect(responseCreate3.body).toHaveProperty("id");
@@ -92,7 +95,7 @@ describe("Testing payment route", () => {
     const responseWrongNumber = await request(app)
       .post("/paymentInfo")
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
-      .send(mockedPaymentInfoNumberError);
+      .send({ ...mockedPaymentInfoNumberError, userId: anaResponse.body.id });
 
     expect(responseWrongNumber.status).toBe(400);
   });
@@ -153,7 +156,7 @@ describe("Testing payment route", () => {
     expect(responsePatchData.status).toBe(200);
   });
 
-  test("DELETE /paymentInfo-/:id - Should be able to delete payment data", async () => {
+  test("DELETE /paymentInfo/:id - Should be able to delete payment data", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedUserLogin);
@@ -162,6 +165,7 @@ describe("Testing payment route", () => {
       .get("/paymentInfo")
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
 
+    console.log(getPayment.body);
     const responseMatchIdUser = await request(app)
       .delete(`/paymentInfo/${getPayment.body.id}`)
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
