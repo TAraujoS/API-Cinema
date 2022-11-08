@@ -13,6 +13,10 @@ const updateSessionService = async (
   const roomsRepositories = AppDataSource.getRepository(Rooms);
   const moviesRepositories = AppDataSource.getRepository(Movies);
 
+  if (movieId){
+    
+  }
+
   const newRoom = await roomsRepositories.findOneBy({ id: roomId });
   const newMovie = await moviesRepositories.findOneBy({ id: movieId });
   const findSession = await sessionRepository.findOneBy({
