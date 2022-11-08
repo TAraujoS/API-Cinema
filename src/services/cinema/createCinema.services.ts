@@ -11,8 +11,6 @@ const createCinemaServices = async (name: string): Promise<Cinema> => {
     throw new AppError("This cinema already exists");
   }
 
-  console.log(name);
-
   const newCinema = cinemaRepository.create({
     name: name,
   });
