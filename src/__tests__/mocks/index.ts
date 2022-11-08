@@ -1,6 +1,8 @@
 import { ICinema } from "../../interfaces/cine";
 import { IMoviesRequest } from "../../interfaces/movies";
-import { IRoomRequest } from "../../interfaces/rooms";
+import { IRoomRequest, IRoomUpdate } from "../../interfaces/rooms";
+import { ISessionRequest } from "../../interfaces/sessions";
+import { ITicketRequest } from "../../interfaces/tickets";
 import { IUserLogin, IUserRequest } from "../../interfaces/user";
 
 export const mockedAdmin: IUserRequest = {
@@ -33,9 +35,9 @@ export const mockedUser: IUserRequest = {
   isEmployee: false,
 };
 
-export const mockedUserExistent: IUserRequest = {
-  name: "Ana",
-  email: "ana@mail.com",
+export const mockedUserExistente: IUserRequest = {
+  name: "Ana23",
+  email: "ana23@mail.com",
   password: "123456",
   isAdm: false,
   birthDate: "1998/07/12",
@@ -55,6 +57,11 @@ export const mockedEmployeeLogin: IUserLogin = {
 
 export const mockedUserLogin: IUserLogin = {
   email: "ana@mail.com",
+  password: "123456",
+};
+
+export const mockedUserLoginExistente: IUserLogin = {
+  email: "ana23@mail.com",
   password: "123456",
 };
 
@@ -88,6 +95,10 @@ export const mockedRoom2: IRoomRequest = {
 export const mockedRoom3: IRoomRequest = {
   capacity: 100,
   cinemaId: "1",
+};
+
+export const mockedRoomUpdate: IRoomUpdate = {
+  capacity: 50,
 };
 
 export const mockedMovie1: IMoviesRequest = {

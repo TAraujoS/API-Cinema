@@ -6,7 +6,6 @@ import {
   mockedAdminLogin,
   mockedEmployee,
   mockedUser,
-  mockedUserExistent,
   mockedUserLogin,
 } from "../../mocks";
 import app from "../../../app";
