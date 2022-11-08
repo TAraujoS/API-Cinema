@@ -4,14 +4,10 @@ import { User } from "../../entities/user.entities";
 import { AppError } from "../../errors/appError";
 
 const listPaymentServices = async (id: string) => {
-  const paymentRepository = AppDataSource.getRepository(PaymentInfo);
-<<<<<<< HEAD
+  //const paymentRepository = AppDataSource.getRepository(PaymentInfo);
   const userRepository = AppDataSource.getRepository(User);
-=======
 
-  const idPayment = paymentRepository.findOneBy({ id: id });
->>>>>>> 9d2efb783a48f6d563e4874ec4178b0d46001616
-
+  //const idPayment = await paymentRepository.findOneBy({ id: id });
   const findUser = await userRepository.findOneBy({ id });
 
   if (!findUser.paymentInfo) {
