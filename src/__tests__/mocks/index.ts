@@ -1,7 +1,10 @@
 import { ICinema } from "../../interfaces/cine";
 import { IMoviesRequest } from "../../interfaces/movies";
-import { IRoomRequest } from "../../interfaces/rooms";
-import { IUserRequest, IUserLogin } from "../../interfaces/user";
+import { IRoomRequest, IRoomUpdate } from "../../interfaces/rooms";
+import { ISessionRequest } from "../../interfaces/sessions";
+import { ITicketRequest } from "../../interfaces/tickets";
+import { IUserLogin, IUserRequest } from "../../interfaces/user";
+
 
 export const mockedAdmin: IUserRequest = {
   name: "Joana",
@@ -93,6 +96,10 @@ export const mockedRoom2: IRoomRequest = {
 export const mockedRoom3: IRoomRequest = {
   capacity: 100,
   cinemaId: "1",
+};
+
+export const mockedRoomUpdate: IRoomUpdate = {
+  capacity: 50,
 };
 
 export const mockedMovie1: IMoviesRequest = {
