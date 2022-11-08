@@ -3,28 +3,24 @@ import { Sessions } from "../../entities/sessions.entities";
 import { Tickets } from "../../entities/tickets.entities";
 import { User } from "../../entities/user.entities";
 import { AppError } from "../../errors/appError";
-import { ITicketRequest } from "../../interfaces/tickets/tickets.interface";
+import { ITicketRequest } from "../../interfaces/tickets";
 
 const createTicketsService = async ({
   chair,
   sessionId,
-  userId
+  userId,
 }: ITicketRequest): Promise<Tickets> => {
   const ticketRepository = AppDataSource.getRepository(Tickets);
-
   const sessionsRepository = AppDataSource.getRepository(Sessions);
+  const userRepository = AppDataSource.getRepository(User);
 
-  const userRepository = AppDataSource.getRepository(User)
-
-  
   const findSession = await sessionsRepository.findOneBy({ id: sessionId });
-
   const findTicket = await ticketRepository.findOne({
     where: {
       chair,
       session: findSession,
     },
-    relations: {user:true}
+    relations: { user: true },
   });
 
   if (chair > 100) {
@@ -39,18 +35,16 @@ const createTicketsService = async ({
     throw new AppError("Chair is already in use");
   }
   const findUser = await userRepository.findOneBy({
-    id: userId
-  })
+    id: userId,
+  });
 
   const ticket = ticketRepository.create({
     chair,
     session: findSession,
-    user : findUser
+    user: findUser,
   });
-  
-  await ticketRepository.save(ticket);
 
-  
+  await ticketRepository.save(ticket);
 
   return ticket;
 };

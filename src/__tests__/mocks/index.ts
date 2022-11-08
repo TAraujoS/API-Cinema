@@ -72,6 +72,10 @@ export const mockedCinema: ICinema = {
   name: "Cine Express",
 };
 
+export const mockedCinemaUpdate: ICinema = {
+  name: "Cine NodeExpress",
+};
+
 export const mockedCinemaExistent: ICinema = {
   name: "Cine Express",
 };
@@ -164,55 +168,80 @@ export const mockedSessionUpdate = {
 
 export const mockedPaymentInfoJoana = {
   name: "Joana",
-  number: "123456987456332",
-  dueDate: 2026 - 12,
+  number: "1234569874563320",
+  dueDate: "2026-12",
   code: "123",
 };
 
 export const mockedPaymentInfoFelipe = {
   name: "Felipe",
-  number: "123456987456332",
-  dueDate: 2026 - 12,
+  number: "1234569874563320",
+  dueDate: "2026-12",
   code: "123",
 };
 
 export const mockedPaymentInfoAna = {
   name: "Ana",
-  number: "323645789654321",
-  dueDate: 2026 - 12,
+  number: "3236457896543210",
+  dueDate: "2026-12",
   code: "123",
 };
 
 export const mockedPaymentInfoExistente1 = {
   name: "Ana",
-  number: "323645789654321",
-  dueDate: 2026 - 12,
+  number: "3236457896543210",
+  dueDate: "2026-12",
   code: "123",
+};
+
+export const mockedPaymentPatchInfoAna = {
+  name: "Ana",
+  number: "3236457896543210",
+  dueDate: "2026-12",
+  code: "456",
 };
 
 export const mockedPaymentInfoNumberError = {
   name: "Ana",
-  number: "3236457896543",
-  dueDate: 2026 - 12,
+  number: "32364578965403",
+  dueDate: "2026-12",
   code: "123",
 };
 
-export const mockedTicketChair1: ITicketRequest = {
-  chair: 32,
-  sessionId: "1",
+export const mockedPaymentInfoCodeError = {
+  name: "Ana",
+  number: "32364578960543",
+  dueDate: "2026-12",
+  code: "13",
 };
 
-export const mockedTicketChair2: ITicketRequest = {
+export const mockedPaymentInfoDueDateError = {
+  name: "Ana",
+  number: "32364578960543",
+  dueDate: "",
+  code: "123",
+};
+
+export const mockedTicketChair1 = {
+  chair: 32,
+  sessionId: "1",
+  userId: "3016fc2b-b609-425a-a164-de33e365049e",
+};
+
+export const mockedTicketChair2 = {
   chair: 12,
   sessionId: "1",
+  userId: "3016fc2b-b609-425a-a164-de33e365049e",
 };
 
-export const mockedTicketChair3: ITicketRequest = {
+export const mockedTicketChair3 = {
   chair: 54,
   sessionId: "1",
+  userId: "3016fc2b-b609-425a-a164-de33e365049e",
 };
 
-export const mockedTicketChairError: ITicketRequest = {
+export const mockedTicketChairError = {
   chair: 32,
   sessionId: "1",
+  userId: "3016fc2b-b609-425a-a164-de33e365049e",
 };

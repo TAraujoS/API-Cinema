@@ -4,10 +4,9 @@ import { IPaymentRequest } from "../../interfaces/payments";
 import { AppError } from "../../errors/appError";
 
 const updatePaymentServices = async (
-  data: IPaymentRequest,
+  { name, number, dueDate, code }: IPaymentRequest,
   id: string
 ): Promise<PaymentInfo> => {
-  const { name, number, dueDate, code } = data;
   const paymentRepository = AppDataSource.getRepository(PaymentInfo);
 
   const findPaymentInfo = await paymentRepository.findOneBy({ id });

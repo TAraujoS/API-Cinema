@@ -7,7 +7,7 @@ const deleteSessionController = async (req: Request, res: Response) => {
 
   await deleteSessionService(id);
 
-  return res.status(204).json();
+  return res.status(204).json("");
 };
 
 export default deleteSessionController;
