@@ -29,12 +29,13 @@ Essa Api foi desenvolvida ....
 ### Index
 
 - [Users](#1-users)
+- [Sessions](#6-sessions)
 
 ---
 
 <h2 align ='center'> <strong>1. USERS<strong> </h2>
 
-[Back to Endpoints](#3-endpoints)
+[Back to Endpoints](#7-endpoints)
 
 <br>
 
