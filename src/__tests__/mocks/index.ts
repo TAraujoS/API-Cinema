@@ -1,12 +1,7 @@
 import { ICinema } from "../../interfaces/cine";
 import { IMoviesRequest } from "../../interfaces/movies";
 import { IRoomRequest } from "../../interfaces/rooms";
-import { ISessionRequest } from "../../interfaces/sessions";
-import { ITicketRequest } from "../../interfaces/tickets/tickets.interface";
-import {
-  IUserLogin,
-  IUserRequest,
-} from "../../interfaces/user/users.interface";
+import { IUserRequest, IUserLogin } from "../../interfaces/user";
 
 export const mockedAdmin: IUserRequest = {
   name: "Joana",
@@ -38,9 +33,9 @@ export const mockedUser: IUserRequest = {
   isEmployee: false,
 };
 
-export const mockedUserExistent: IUserRequest = {
-  name: "Ana",
-  email: "ana@mail.com",
+export const mockedUserExistente: IUserRequest = {
+  name: "Ana23",
+  email: "ana23@mail.com",
   password: "123456",
   isAdm: false,
   birthDate: "1998/07/12",
@@ -60,6 +55,11 @@ export const mockedEmployeeLogin: IUserLogin = {
 
 export const mockedUserLogin: IUserLogin = {
   email: "ana@mail.com",
+  password: "123456",
+};
+
+export const mockedUserLoginExistente: IUserLogin = {
+  email: "ana23@mail.com",
   password: "123456",
 };
 
