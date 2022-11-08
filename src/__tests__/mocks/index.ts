@@ -5,6 +5,7 @@ import { ISessionRequest } from "../../interfaces/sessions";
 import { ITicketRequest } from "../../interfaces/tickets";
 import { IUserLogin, IUserRequest } from "../../interfaces/user";
 
+
 export const mockedAdmin: IUserRequest = {
   name: "Joana",
   email: "joana@mail.com",
@@ -35,9 +36,9 @@ export const mockedUser: IUserRequest = {
   isEmployee: false,
 };
 
-export const mockedUserExistent: IUserRequest = {
-  name: "Ana",
-  email: "ana@mail.com",
+export const mockedUserExistente: IUserRequest = {
+  name: "Ana23",
+  email: "ana23@mail.com",
   password: "123456",
   isAdm: false,
   birthDate: "1998/07/12",
@@ -57,6 +58,11 @@ export const mockedEmployeeLogin: IUserLogin = {
 
 export const mockedUserLogin: IUserLogin = {
   email: "ana@mail.com",
+  password: "123456",
+};
+
+export const mockedUserLoginExistente: IUserLogin = {
+  email: "ana23@mail.com",
   password: "123456",
 };
 
