@@ -51,7 +51,7 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Tickets, (tickets) => tickets.user)
+  @OneToMany(() => Tickets, (tickets) => tickets.user, { eager: true })
   tickets: Tickets[];
 
   @OneToOne(() => PaymentInfo, { eager: true, cascade: true })
@@ -59,7 +59,7 @@ export class User {
   paymentInfo: PaymentInfo;
 
   @ManyToOne(() => Cinema, { eager: true })
-  @JoinColumn()
+  @Exclude()
   cinema: Cinema;
 
   constructor() {

@@ -1,5 +1,6 @@
 import { Exclude } from "class-transformer";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { v4 as uuid } from "uuid";
 
 @Entity("paymentInfo")
 export class PaymentInfo {
@@ -18,4 +19,10 @@ export class PaymentInfo {
   @Column({ length: 3 })
   @Exclude()
   code: string;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }

@@ -1,5 +1,6 @@
+import { instanceToPlain } from "class-transformer";
 import { Request, Response } from "express";
-import { ITicketRequest } from "../../interfaces/tickets/tickets.interface";
+import { ITicketRequest } from "../../interfaces/tickets";
 import createTicketsService from "../../services/tickets/createTickets.services";
 
 const createTicketsController = async (req: Request, res: Response) => {
@@ -7,7 +8,7 @@ const createTicketsController = async (req: Request, res: Response) => {
 
   const ticket = await createTicketsService(data);
 
-  return res.status(200).json(ticket);
+  return res.status(200).json(instanceToPlain(ticket));
 };
 
 export default createTicketsController;
