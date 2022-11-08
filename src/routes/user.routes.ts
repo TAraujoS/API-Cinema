@@ -12,18 +12,21 @@ import ensureIdUserMiddleware from "../middlewares/ensureIdUser.middleware";
 const userRoutes = Router();
 
 userRoutes.post("", createUserController);
+
 userRoutes.get(
   "",
   ensureAuthMiddleware,
   ensureIsEmployeeAdmMiddleware,
   listUsersController
 );
+
 userRoutes.get(
   "/:id",
   ensureAuthMiddleware,
   ensureIsEmployeeAdmMiddleware,
   listUserIdController
 );
+
 userRoutes.patch(
   "/:id",
   ensureAuthMiddleware,
@@ -31,6 +34,7 @@ userRoutes.patch(
   ensureIdUserMiddleware,
   updateUserController
 );
+
 userRoutes.delete(
   "/:id",
   ensureAuthMiddleware,

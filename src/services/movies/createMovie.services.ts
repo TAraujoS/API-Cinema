@@ -23,7 +23,6 @@ const createMovieService = async ({
   }
 
   const findCinema = await cinemaRepository.find();
-  
 
   const movie = moviesRepository.create({
     name,

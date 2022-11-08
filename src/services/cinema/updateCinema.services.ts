@@ -6,6 +6,10 @@ const updateCinemaServices = async (
   name: string,
   id: string
 ): Promise<Cinema> => {
+  if (!name) {
+    throw new AppError("Missing required field", 400);
+  }
+
   const cinemaRepository = AppDataSource.getRepository(Cinema);
 
   const findCinema = cinemaRepository.findOneBy({ id });
@@ -15,7 +19,7 @@ const updateCinemaServices = async (
   }
 
   await cinemaRepository.update(id, {
-    name: name,
+    name,
   });
 
   const updatedCinema = await cinemaRepository.findOneBy({ id });
