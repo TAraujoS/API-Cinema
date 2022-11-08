@@ -7,7 +7,6 @@ import { Cinema } from "../../entities/cine.entities";
 
 const createRoomsService = async ({
   capacity,
-  cinemaId,
 }: IRoomRequest): Promise<Rooms> => {
   const roomsRepository = AppDataSource.getRepository(Rooms);
   const sessionRepository = AppDataSource.getRepository(Sessions);
@@ -16,6 +15,17 @@ const createRoomsService = async ({
   const findSession = await sessionRepository.find();
   const findCinema = await cinemaRepository.find();
   const rooms = await roomsRepository.find();
+
+  if (capacity < 30) {
+    throw new AppError("Minimum of 30 chairs");
+  }
+  if (capacity > 100) {
+    throw new AppError("Maximum of 100 chairs");
+  }
+
+  // if (rooms.length > 9) {
+  //   throw new AppError("Only 10 rooms can be created", 404);
+  // }
 
   if (!findSession) {
     throw new AppError("Session not exists", 404);

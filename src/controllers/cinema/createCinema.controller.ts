@@ -6,8 +6,6 @@ const createCinemaController = async (req: Request, res: Response) => {
 
   const cinema = await createCinemaServices(name);
 
-  console.log(cinema);
-
   return res.status(201).json(cinema);
 };
 

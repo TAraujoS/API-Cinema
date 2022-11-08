@@ -72,6 +72,10 @@ export const mockedCinema: ICinema = {
   name: "Cine Express",
 };
 
+export const mockedCinemaUpdate: ICinema = {
+  name: "Cine NodeExpress",
+};
+
 export const mockedCinemaExistent: ICinema = {
   name: "Cine Express",
 };
@@ -197,22 +201,22 @@ export const mockedPaymentInfoNumberError = {
   code: "123",
 };
 
-export const mockedTicketChair1: ITicketRequest = {
+export const mockedTicketChair1 = {
   chair: 32,
   sessionId: "1",
 };
 
-export const mockedTicketChair2: ITicketRequest = {
+export const mockedTicketChair2 = {
   chair: 12,
   sessionId: "1",
 };
 
-export const mockedTicketChair3: ITicketRequest = {
+export const mockedTicketChair3 = {
   chair: 54,
   sessionId: "1",
 };
 
-export const mockedTicketChairError: ITicketRequest = {
+export const mockedTicketChairError = {
   chair: 32,
   sessionId: "1",
 };
