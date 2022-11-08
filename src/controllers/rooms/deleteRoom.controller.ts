@@ -6,7 +6,7 @@ const deleteRoomController = async (req: Request, res: Response) => {
 
   await deleteRoomService(id);
 
-  return res.status(204).json();
+  return res.status(204).json("");
 };
 
 export default deleteRoomController;

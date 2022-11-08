@@ -12,4 +12,4 @@ const updateMovieController = async (req: Request, res: Response) => {
   return res.status(200).json(updatedMovie);
 };
 
-export { updateMovieController };
+export default updateMovieController;
