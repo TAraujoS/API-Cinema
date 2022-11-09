@@ -14,9 +14,13 @@ const updateUserService = async (
     id,
   });
 
-  if (!findUser) {
+ /// esse if não está funcionando no insomnia
+  if (!findUser.id) {
     throw new AppError("User not found", 404);
   }
+////
+
+  
 
   await userRepository.update(id, {
     name: name ? name : findUser.name,
