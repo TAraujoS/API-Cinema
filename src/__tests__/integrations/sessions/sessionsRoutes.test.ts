@@ -100,34 +100,6 @@ describe("/sessions", () => {
     expect(session1CreateResponse.status).toBe(201);
   });
 
-  test("POST /sessions -  should be able to create a session 2", async () => {
-    const employeeLoginResponse = await request(app)
-      .post("/login")
-      .send(mockedEmployeeLogin);
-
-    const session2CreateResponse = await request(app)
-      .post("/sessions")
-      .set("Authorization", `Bearer ${employeeLoginResponse.body.token}`)
-      .send(mockedSession2);
-
-    expect(session2CreateResponse.body).toHaveProperty("session");
-    expect(session2CreateResponse.status).toBe(201);
-  });
-
-  test("POST /sessions -  should be able to create a session 3", async () => {
-    const employeeLoginResponse = await request(app)
-      .post("/login")
-      .send(mockedEmployeeLogin);
-
-    const session3CreateResponse = await request(app)
-      .post("/sessions")
-      .set("Authorization", `Bearer ${employeeLoginResponse.body.token}`)
-      .send(mockedSession3);
-
-    expect(session3CreateResponse.body).toHaveProperty("session");
-    expect(session3CreateResponse.status).toBe(201);
-  });
-
   test("POST /sessions -  should not be able to create a session with a date and time already scheduled ", async () => {
     const employeeLoginResponse = await request(app)
       .post("/login")
