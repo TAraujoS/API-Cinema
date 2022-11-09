@@ -86,18 +86,18 @@ describe("/sessions", () => {
     await connection.destroy();
   });
 
-  test("POST /sessions -  should be able to create a session 1", async () => {
+  test("POST /sessions -  should be able to create a session 3", async () => {
     const employeeLoginResponse = await request(app)
       .post("/login")
       .send(mockedEmployeeLogin);
 
-    const session1CreateResponse = await request(app)
+    const session3CreateResponse = await request(app)
       .post("/sessions")
       .set("Authorization", `Bearer ${employeeLoginResponse.body.token}`)
-      .send(mockedSession1);
+      .send(mockedSession3);
 
-    expect(session1CreateResponse.body).toHaveProperty("session");
-    expect(session1CreateResponse.status).toBe(201);
+    expect(session3CreateResponse.body).toHaveProperty("session");
+    expect(session3CreateResponse.status).toBe(201);
   });
 
   test("POST /sessions -  should not be able to create a session with a date and time already scheduled ", async () => {
