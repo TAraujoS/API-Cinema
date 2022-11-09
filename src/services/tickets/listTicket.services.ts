@@ -13,7 +13,7 @@ const listTicketByIdService = async (id: string): Promise<Tickets> => {
   });
 
   if (!findTicket) {
-    throw new AppError("Ticket not found");
+    throw new AppError("Ticket not found", 404);
   }
 
   return findTicket;
