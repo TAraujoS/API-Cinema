@@ -152,7 +152,35 @@ describe("/sessions", () => {
       .send(mockedSessionUpdate);
 
     expect(session1CreateResponse.body).toHaveProperty("session");
-    expect(session1CreateResponse.status).toBe(201);
+    expect(session1CreateResponse.status).toBe(200);
+  });
+
+  test("PATCH /sessions -  not should be able to update a session without authorization. ", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const session1CreateResponse = await request(app)
+      .patch(`/sessions/${1}`)
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedSessionUpdate);
+
+    expect(session1CreateResponse.body).toHaveProperty("message");
+    expect(session1CreateResponse.status).toBe(403);
+  });
+
+  test("PATCH /sessions -  should be able to update a session. ", async () => {
+    const employeeLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedEmployeeLogin);
+
+    const session1CreateResponse = await request(app)
+      .patch(`/sessions/${1}`)
+      .set("Authorization", `Bearer ${employeeLoginResponse.body.token}`)
+      .send(mockedSessionUpdate);
+
+    expect(session1CreateResponse.body).toHaveProperty("session");
+    expect(session1CreateResponse.status).toBe(200);
   });
 
   test("GET /sessions -  should be able to list all sessions. ", async () => {
