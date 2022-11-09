@@ -140,36 +140,36 @@ export const mockedMovieExistent: IMoviesRequest = {
 export const mockedSession1 = {
   day: "2022/11/20",
   hour: "15:00",
-  room_id: "1",
-  movie_id: "1",
+  roomId: "1",
+  movieId: "1",
 };
 
 export const mockedSession2 = {
   day: "2022/11/05",
   hour: "18:00",
-  room_id: "2",
-  movie_id: "2",
+  roomId: "2",
+  movieId: "2",
 };
 
 export const mockedSession3 = {
   day: "2022/11/10",
   hour: "21:00",
-  room_id: "3",
-  movie_id: "3",
+  roomId: "3",
+  movieId: "3",
 };
 
 export const mockedSessionExistent = {
   day: "2022/11/10",
   hour: "21:00",
-  room_id: "3",
-  movie_id: "3",
+  roomId: "3",
+  movieId: "3",
 };
 
 export const mockedSessionUpdate = {
   day: "2022/12/10",
   hour: "23:00",
-  room_id: "1",
-  movie_id: "2",
+  roomId: "1",
+  movieId: "2",
 };
 
 export const mockedPaymentInfoJoana = {
