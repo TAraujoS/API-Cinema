@@ -3,7 +3,7 @@ import app from "../../../app";
 import { DataSource } from "typeorm";
 import { AppDataSource } from "../../../data-source";
 import { IMovies } from "../../../interfaces/movies";
-import { mockedMovie1, mockedMovie2 } from "../../mocks/index";
+import { mockedMovie1, mockedMovie2, mockedMovie4 } from "../../mocks/index";
 import { mockedUser } from "../../mocks/index";
 import { mockedUserExistente } from "../../mocks/index";
 import { mockedUserLoginExistente } from "../../mocks/index";
@@ -147,7 +147,7 @@ describe("Testing movie routes", () => {
     const newMovie = await request(app)
       .post("/movies")
       .set("Authorization", `Bearer ${adminLoginResponse.body.token}`)
-      .send(mockedMovie1);
+      .send(mockedMovie2);
 
     const movieTobeDeleted = await request(app)
       .get(`/movies/${newMovie.body.id}`)
@@ -167,7 +167,10 @@ describe("Testing movie routes", () => {
     const newMovie = await request(app)
       .post("/movies")
       .set("Authorization", `Bearer ${employeeLoginResponse.body.token}`)
-      .send(mockedMovie1);
+      .send(mockedMovie4);
+
+    console.log(newMovie.body);
+    console.log(mockedMovie4);
 
     const movieTobeUpdated = await request(app)
       .patch(`/movies/${newMovie.body.id}`)
