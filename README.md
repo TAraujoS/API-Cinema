@@ -87,7 +87,7 @@ The User object is defined as:
 ### **Request**:
 
 - POST /users
-- Host: http://suaapi.com/v1
+- Host: https://cine-express-projeto-m4.herokuapp.com
 - Authorization: None
 - Content-type: application/json
 
@@ -171,7 +171,7 @@ The User object is defined as:
 
 ### **Request**
 - SIGN /login
-- Host: http://suaapi.com/v1
+- Host: https://cine-express-projeto-m4.herokuapp.com
 - Authorization: None
 - Content-type: application/json
 - User must be created
@@ -232,7 +232,7 @@ The User object is defined as:
 ### **Request**:
 
 - GET /users
-- Host: http://suaapi.com/v1
+- Host: https://cine-express-projeto-m4.herokuapp.com
 - Authorization: Bearer Token
 - Content-type: application/json
 - Empty body
@@ -318,7 +318,7 @@ The User object is defined as:
 ### **Request**:
 
 - GET /users/:id
-- Host: http://suaapi.com/v1
+- Host: https://cine-express-projeto-m4.herokuapp.com
 - Authorization: Bearer Token
 - Content-type: application/json
 - Empty body
@@ -404,7 +404,7 @@ or
 ### **Request**:
 
 - PATCH /users/:id
-- Host: http://suaapi.com/v1
+- Host: https://cine-express-projeto-m4.herokuapp.com
 - Authorization: Bearer Token
 - Content-type: application/json
 - User must be an Adm and employee
@@ -484,7 +484,7 @@ or
 ### **Request**:
 
 - DELETE /users/:id
-- Host: http://suaapi.com/v1
+- Host: https://cine-express-projeto-m4.herokuapp.com
 - Authorization: Bearer Token
 - Content-type: application/json
 - User must be an Adm and employee
@@ -535,7 +535,7 @@ No body returned for response
 }
 or
 {
-  "message": "User is not employee
+  "message": "User is not employee"
 }
 ```
 ### **Status `400 - Bad Request`** - "User already deleted"
