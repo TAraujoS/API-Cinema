@@ -8,25 +8,26 @@ import { ISessionRequest } from "../../interfaces/sessions";
 const createSessionService = async ({
   day,
   hour,
-  room_id,
-  movie_id,
+  roomId,
+  movieId,
 }: ISessionRequest) => {
+  if (!day || !hour || !roomId || !movieId) {
+    throw new AppError("Missing required field", 400);
+  }
+
   const sessionRepository = AppDataSource.getRepository(Sessions);
-
   const roomsRepositories = AppDataSource.getRepository(Rooms);
-
   const moviesRepositories = AppDataSource.getRepository(Movies);
 
-  const newRoom = await roomsRepositories.findOneBy({ id: room_id });
-
-  const newMovie = await moviesRepositories.findOneBy({ id: movie_id });
+  const newRoom = await roomsRepositories.findOneBy({ id: roomId });
+  const newMovie = await moviesRepositories.findOneBy({ id: movieId });
 
   if (!newRoom) {
-    throw new AppError("This room dont exist", 404);
+    throw new AppError("This room dont exist", 400);
   }
 
   if (!newMovie) {
-    throw new AppError("This movie dont exist", 404);
+    throw new AppError("This movie dont exist", 400);
   }
 
   const sessionExist = await sessionRepository.findOne({

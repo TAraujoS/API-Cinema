@@ -6,19 +6,19 @@ import { AppError } from "../../errors/appError";
 import { ISessionUpdate } from "../../interfaces/sessions";
 
 const updateSessionService = async (
-  { day, hour, room_id, movie_id }: ISessionUpdate,
+  { day, hour, roomId, movieId }: ISessionUpdate,
   id: string
 ): Promise<Sessions> => {
   const sessionRepository = AppDataSource.getRepository(Sessions);
-
   const roomsRepositories = AppDataSource.getRepository(Rooms);
-
   const moviesRepositories = AppDataSource.getRepository(Movies);
 
-  const newRoom = await roomsRepositories.findOneBy({ id: room_id });
+  if (movieId){
+    
+  }
 
-  const newMovie = await moviesRepositories.findOneBy({ id: movie_id });
-
+  const newRoom = await roomsRepositories.findOneBy({ id: roomId });
+  const newMovie = await moviesRepositories.findOneBy({ id: movieId });
   const findSession = await sessionRepository.findOneBy({
     id,
   });

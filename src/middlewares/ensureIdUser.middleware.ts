@@ -17,8 +17,6 @@ const ensureIdUserMiddleware = async (
   if (idParams === req.user.id) {
     return next();
   }
-
-  return next();
 };
 
 export default ensureIdUserMiddleware;

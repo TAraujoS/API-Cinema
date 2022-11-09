@@ -5,7 +5,12 @@ import { AppError } from "../../errors/appError";
 const listTicketByIdService = async (id: string): Promise<Tickets> => {
   const ticketRepository = AppDataSource.getRepository(Tickets);
 
-  const findTicket = ticketRepository.findOneBy({ id });
+  const findTicket = ticketRepository.findOne({
+    where: {
+      id,
+    },
+    relations: { session: true },
+  });
 
   if (!findTicket) {
     throw new AppError("Ticket not found");
