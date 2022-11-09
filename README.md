@@ -638,7 +638,7 @@ The Payments object is defined as:
 
 <br>
 
-## POST - `/paymentInfo`
+## POST `/paymentInfo`
 
 <br>
 
@@ -732,7 +732,7 @@ The Payments object is defined as:
 
 <br>
 
-## PATCH - `/paymentInfo/:id`
+## PATCH `/paymentInfo/:id`
 
 <br>
 
@@ -816,7 +816,7 @@ The Payments object is defined as:
 
 <br>
 
-## GET - `/paymentInfo`
+## GET `/paymentInfo`
 
 <br>
 
@@ -880,7 +880,7 @@ The Payments object is defined as:
 
 <br>
 
-## GET - `/paymentInfo/:id`
+## GET `/paymentInfo/:id`
 
 <br>
 
@@ -942,7 +942,7 @@ The Payments object is defined as:
 
 <br>
 
-## DELETE - `/paymentInfo/:id`
+## DELETE `/paymentInfo/:id`
 
 <br>
 
@@ -1085,7 +1085,82 @@ The Cinema object is defined as:
 
 #
 
-## **3.2 Update Cinema**
+## **3.2 List Cinema**
+
+[Back to Endpoints](#5-endpoints)
+
+<br>
+
+## GET - `/cinema`
+
+<br>
+
+### **Request**:
+
+- GET /cinema
+- Host: https://cine-express-projeto-m4.herokuapp.com/movies/
+- Authorization: Bearer Token
+- Content-type: application/json
+- Empty Body
+
+<br>
+
+### **Request headers**:
+
+```json
+{
+  "authorization": "Bearer Token"
+}
+```
+
+<br>
+
+### **Expected Response**:
+
+<br>
+
+#### **Status `200 - OK`**
+
+```json
+{
+  "cinemas": [
+    {
+      "id": 1,
+      "name": "Cine Express"
+    },
+    {
+      "id": 2,
+      "name": "Cine Jason Button"
+    },
+    {
+      "id": 3,
+      "name": "Cine Jason Button"
+    },
+    {
+      "id": 4,
+      "name": "Cine Prive"
+    }
+  ]
+}
+```
+
+<br>
+
+### **Error Responses**:
+
+<br>
+
+#### **Status `401 - UNAUTHORIZED`** - "Missing authorization token"
+
+```json
+{
+  "message": "Missing authorization token"
+}
+```
+
+#
+
+## **3.3 Update Cinema**
 
 [Back to Endpoints](#3-endpoints)
 
@@ -1215,7 +1290,7 @@ The Movie object is defined as:
 
 <br>
 
-## POST - `/movies`
+## POST `/movies`
 
 <br>
 
@@ -1296,7 +1371,7 @@ The Movie object is defined as:
 
 <br>
 
-## GET - `/movies`
+## GET `/movies`
 
 <br>
 
@@ -1366,7 +1441,7 @@ The Movie object is defined as:
 
 <br>
 
-## GET - `/movies/movieId`
+## GET `/movies/movieId`
 
 <br>
 
@@ -1434,7 +1509,7 @@ The Movie object is defined as:
 
 <br>
 
-## PATCH - `/movies/movieId`
+## PATCH `/movies/movieId`
 
 <br>
 
@@ -1526,7 +1601,7 @@ The Movie object is defined as:
 
 <br>
 
-## DELETE - `/movies/movieId`
+## DELETE `/movies/movieId`
 
 <br>
 
