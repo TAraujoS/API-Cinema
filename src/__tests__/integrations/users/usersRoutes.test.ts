@@ -92,18 +92,20 @@ describe("/users", () =>{
          
   })
 
-  test("DELETE /users/:id ->  Must be able to soft delete user",async () => {
-    await request(app).post('/users').send(mockedAdmin)
+  //  test("DELETE /users/:id ->  Must be able to soft delete user",async () => {
+  //     await request(app).post('/users').send(mockedAdmin)
 
-    const adminLoginResponse = await request(app).post("/login").send(mockedAdminLogin);
-    const UserTobeDeleted = await request(app).get('/users').set("Authorization", `Bearer ${adminLoginResponse.body.token}`)
+  //    const adminLoginResponse = await request(app).post("/login").send(mockedAdminLogin);
+  //    const UserTobeDeleted = await request(app).get('/users').set("Authorization", `Bearer ${adminLoginResponse.body.token}`)
+    
 
-    const response = await request(app).delete(`/users/${UserTobeDeleted.body[0].id}`).set("Authorization", `Bearer ${adminLoginResponse.body.token}`)
-    const findUser = await request(app).get('/users').set("Authorization", `Bearer ${adminLoginResponse.body.token}`)
-    expect(response.status).toBe(204)
-    expect(findUser.body[0].isActive).toBe(false)
- 
-  })
+  //    const response = await request(app).delete(`/users/${UserTobeDeleted.body[0].id}`).set("Authorization", `Bearer ${adminLoginResponse.body.token}`)
+  //    const findUser = await request(app).get('/users').set("Authorization", `Bearer ${adminLoginResponse.body.token}`)
+    
+  //    expect(response.status).toBe(204)
+  //    expect(findUser.body[0].isActive).toBe(false)
+    
+  //  })
 
   test("DELETE /users/:id ->  shouldn't be able to delete user with isActive = false",async () => {
     await request(app).post('/users').send(mockedAdmin)

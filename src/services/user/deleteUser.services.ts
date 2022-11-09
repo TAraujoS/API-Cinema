@@ -13,13 +13,15 @@ const deleteUserService = async (id: string): Promise<void> => {
     throw new AppError("User not Found", 404);
   }
 
+  
   await userRepository.update(id, {
     isActive: false,
   })
-
+  
   if (deletedUser.isActive === false) {
     throw new AppError("User already deleted", 400);
   }
+
 
   
 };
