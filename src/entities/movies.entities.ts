@@ -33,6 +33,6 @@ export class Movies {
   @JoinColumn()
   cinema: Cinema;
 
-  @OneToMany(() => Sessions, (session) => session.movie, { eager: true })
+  @OneToMany(() => Sessions, (session) => session.movie)
   sessions: Sessions[];
 }
