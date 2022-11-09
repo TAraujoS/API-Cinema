@@ -11,16 +11,15 @@ const createSessionService = async ({
   roomId,
   movieId,
 }: ISessionRequest) => {
-  if (!day || !hour || !roomId || !movieId) {
-    throw new AppError("Missing required field", 400);
-  }
-
   const sessionRepository = AppDataSource.getRepository(Sessions);
   const roomsRepositories = AppDataSource.getRepository(Rooms);
   const moviesRepositories = AppDataSource.getRepository(Movies);
-
   const newRoom = await roomsRepositories.findOneBy({ id: roomId });
   const newMovie = await moviesRepositories.findOneBy({ id: movieId });
+
+  if (!day || !hour || !roomId || !movieId) {
+    throw new AppError("Missing required field", 400);
+  }
 
   if (!newRoom) {
     throw new AppError("This room dont exist", 400);
