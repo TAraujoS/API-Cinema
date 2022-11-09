@@ -128,6 +128,15 @@ export const mockedMovie3: IMoviesRequest = {
   cinema: "1",
 };
 
+export const mockedMovie4: IMoviesRequest = {
+  name: "joao e o pe de feijao",
+  gender: "Adult",
+  avaliation: 5.0,
+  duration: "2:40",
+  onDisplay: true,
+  cinema: "1",
+};
+
 export const mockedMovieExistent: IMoviesRequest = {
   name: "Poeira em Alto Mar",
   gender: "Adult",

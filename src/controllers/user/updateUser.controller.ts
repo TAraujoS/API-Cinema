@@ -10,7 +10,7 @@ const updateUserController = async (req: Request, res: Response) => {
 
   const updateUser = await updateUserService(user, id);
 
-  return res.json(instanceToPlain(updateUser));
+  return res.json({ message: "User updated" });
 };
 
 export default updateUserController;

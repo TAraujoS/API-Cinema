@@ -103,9 +103,11 @@ describe("/users", () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedUserLogin);
+
     const adminLoginResponse = await request(app)
       .post("/login")
       .send(mockedAdminLogin);
+
     const UserTobeDeleted = await request(app)
       .get("/users")
       .set("Authorization", `Bearer ${adminLoginResponse.body.token}`);
@@ -138,15 +140,21 @@ describe("/users", () => {
     const adminLoginResponse = await request(app)
       .post("/login")
       .send(mockedAdminLogin);
-    const UserTobeDeleted = await request(app)
+
+    const userTobeDeleted = await request(app)
       .get("/users")
       .set("Authorization", `Bearer ${adminLoginResponse.body.token}`);
 
     const response = await request(app)
-      .delete(`/users/${UserTobeDeleted.body[0].id}`)
+      .delete(`/users/${userTobeDeleted.body[0].id}`)
       .set("Authorization", `Bearer ${adminLoginResponse.body.token}`);
-    expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty("message");
+
+    const delResponse = await request(app)
+      .delete(`/users/${userTobeDeleted.body[0].id}`)
+      .set("Authorization", `Bearer ${adminLoginResponse.body.token}`);
+
+    expect(delResponse.status).toBe(400);
+    expect(delResponse.body).toHaveProperty("message");
   });
 
   test("DELETE -  should not be able to delete user with invalid id", async () => {
@@ -159,6 +167,7 @@ describe("/users", () => {
     const response = await request(app)
       .delete(`/users/13970660-5dbe-423a-9a9d-5c23b37943cf`)
       .set("Authorization", `Bearer ${adminLoginResponse.body.token}`);
+
     expect(response.status).toBe(404);
     expect(response.body).toHaveProperty("message");
   });
@@ -192,7 +201,7 @@ describe("/users", () => {
     const userTobeUpdateId = userTobeUpdateRequest.body[0].id;
 
     const response = await request(app)
-      .patch(`/users/13970660-5dbe-423a-9a9d-5c23b37943cf`)
+      .patch(`/users/e64c6322-2a32-41be-8be9-37da17161ee9`)
       .set("Authorization", token)
       .send(newValues);
 
