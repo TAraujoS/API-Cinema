@@ -971,7 +971,11 @@ The Payments object is defined as:
 
 <br>
 
-#### **Status `204 - NO BODY`**
+#### **Status `204 - No Content`**
+
+```json
+No body returned for response
+```
 
 <br>
 
@@ -1630,7 +1634,11 @@ The Movie object is defined as:
 
 <br>
 
-#### **Status `204 - OK`**
+#### **Status `204 - No Content`**
+
+```json
+No body returned for response
+```
 
 <br>
 
@@ -1995,11 +2003,11 @@ The Room object is defined as:
 
 <br>
 
-#### **Status `403 - FORBIDDEN`** - "User is not adm"
+#### **Status `403 - FORBIDDEN`** - "User is not Admin"
 
 ```json
 {
-  "message": "User is not adm"
+  "message": "User is not Admin"
 }
 ```
 
@@ -2063,6 +2071,7 @@ The Session object is defined as:
 | GET    | /sessions            | List all users                           |
 | GET    | /sessions/:movieId   | Lists a user using its ID as a parameter |
 | PATCH  | /sessions/:sessionId | Update session                           |
+| DELETE | /sessions/:sessionId | Delete session                           |
 
 ---
 
@@ -2391,6 +2400,8 @@ The Session object is defined as:
 - Body must contain any of the keys
 - User must be an Employee
 
+<br>
+
 ### **Request body**:
 
 ```json
@@ -2465,6 +2476,83 @@ The Session object is defined as:
 ```json
 {
   "message": "This session dont exist"
+}
+```
+
+#
+
+## **6.5 Delete Sessions**
+
+[Back to Endpoints](#3-endpoints)
+
+<br>
+
+## DELETE `/sessions/:id`
+
+<br>
+
+### **Request**:
+
+- DELETE /sessions/:id
+- Host: https://cine-express-projeto-m4.herokuapp.com
+- Authorization: Bearer Token
+- Content-type: application/json
+- Empty Body
+- User must be an Admin
+
+<br>
+
+### **Request headers**:
+
+```json
+{
+  "authorization": "Bearer Token"
+}
+```
+
+<br>
+
+### **Expected Response**:
+
+<br>
+
+#### **Status `204 - NO CONTENT`**
+
+```json
+No body returned for response
+```
+
+<br>
+
+### **Error Responses**:
+
+<br>
+
+#### **Status `401 - UNAUTHORIZED`** - "Missing authorization token"
+
+```json
+{
+  "message": "Missing authorization token"
+}
+```
+
+<br>
+
+#### **Status `404 - NOT FOUND`** - "Session not found"
+
+```json
+{
+  "message": "Session not found"
+}
+```
+
+<br>
+
+#### **Status `403 - FORBIDDEN`** - "User is not Admin"
+
+```json
+{
+  "message": "User is not Admin"
 }
 ```
 

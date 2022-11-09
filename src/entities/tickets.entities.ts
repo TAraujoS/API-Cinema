@@ -19,7 +19,7 @@ export class Tickets {
   @Exclude()
   user: User;
 
-  @ManyToOne(() => Sessions)
+  @ManyToOne(() => Sessions, { onDelete: "CASCADE" })
   session: Sessions;
 
   constructor() {

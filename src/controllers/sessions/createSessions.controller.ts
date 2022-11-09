@@ -6,7 +6,7 @@ const createSessionController = async (req: Request, res: Response) => {
 
   const newSession = await createSessionService(session);
 
-  return res.status(201).json(newSession);
+  return res.status(201).json({ session: newSession });
 };
 
 export default createSessionController;

@@ -177,10 +177,10 @@ export const mockedSession3 = {
 };
 
 export const mockedSessionExistent = {
-  day: "2022/11/10",
-  hour: "21:00",
-  roomId: "3",
-  movieId: "3",
+  day: "2022/11/20",
+  hour: "15:00",
+  roomId: "1",
+  movieId: "1",
 };
 
 export const mockedSessionUpdate = {
