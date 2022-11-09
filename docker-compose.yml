@@ -6,7 +6,7 @@ services:
     build: .
     env_file:
       - .env
-    port:
+    ports:
       - $PORT:$PORT
     volumes:
       - .:/app
@@ -17,11 +17,11 @@ services:
     command: bash -c "yarn typeorm migration:run -d src/data-source && yarn dev"
 
   docker_db:
-    container_name: postgress_db
-    image: postgress:14
+    container_name: postgres_db
+    image: postgres:14
     env_file:
       - .env
-    port:
+    ports:
       - $PGPORT:$PGPORT
     healthcheck:
       test:
