@@ -10,7 +10,7 @@ const deleteSessionService = async (id: string): Promise<void> => {
   });
 
   if (!session) {
-    throw new AppError("Room was not found");
+    throw new AppError("Session was not found");
   }
 
   await sessionRepository.delete(id);

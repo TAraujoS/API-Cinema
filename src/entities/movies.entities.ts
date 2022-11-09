@@ -3,7 +3,6 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  JoinColumn,
   OneToMany,
 } from "typeorm";
 import { Cinema } from "./cine.entities";
@@ -30,9 +29,8 @@ export class Movies {
   onDisplay: boolean;
 
   @ManyToOne(() => Cinema, { eager: true })
-  @JoinColumn()
   cinema: Cinema;
 
-  @OneToMany(() => Sessions, (session) => session.movie, { eager: true })
+  @OneToMany(() => Sessions, (session) => session.movie)
   sessions: Sessions[];
 }
