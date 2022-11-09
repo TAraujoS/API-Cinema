@@ -19,6 +19,7 @@ import {
   mockedSessionExistent,
   mockedSessionUpdate,
   mockedUser,
+  mockedUserLogin,
 } from "../../mocks";
 import request from "supertest";
 
