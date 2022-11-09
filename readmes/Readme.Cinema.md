@@ -1,6 +1,6 @@
 #
 
-<h2 align ='center'> <strong>2. CINEMA<strong> </h2>
+<h2 align ='center'> <strong>3. CINEMA<strong> </h2>
 
 [Back to Endpoints](#3-endpoints)
 
@@ -28,7 +28,7 @@ The Cinema object is defined as:
 
 <br>
 
-## **2.1 Cinema Creation**
+## **3.1 Cinema Creation**
 
 [Back to Endpoints](#3-endpoints)
 
@@ -96,7 +96,7 @@ The Cinema object is defined as:
 
 #
 
-## **2.2 Update Cinema**
+## **3.2 Update Cinema**
 
 [Back to Endpoints](#3-endpoints)
 
