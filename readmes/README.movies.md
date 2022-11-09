@@ -119,6 +119,14 @@ The Movie object is defined as:
 }
 ```
 
+#### **Status `403 - FORBIDDEN`** - "User is not an admin"
+
+```json
+{
+  "message": "User is not an adm"
+}
+```
+
 #
 
 ## **4.2 List Movies**
