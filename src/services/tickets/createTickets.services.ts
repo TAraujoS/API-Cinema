@@ -34,6 +34,7 @@ const createTicketsService = async ({
   if (findTicket) {
     throw new AppError("Chair is already in use");
   }
+
   const findUser = await userRepository.findOneBy({
     id: userId,
   });

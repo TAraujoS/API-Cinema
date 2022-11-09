@@ -228,25 +228,25 @@ export const mockedPaymentInfoDueDateError = {
   code: "123",
 };
 
-export const mockedTicketChair1 = {
+export const mockedTicketChair1: ITicketRequest = {
   chair: 32,
   sessionId: "1",
   userId: "3016fc2b-b609-425a-a164-de33e365049e",
 };
 
-export const mockedTicketChair2 = {
+export const mockedTicketChair2: ITicketRequest = {
   chair: 12,
   sessionId: "1",
   userId: "3016fc2b-b609-425a-a164-de33e365049e",
 };
 
-export const mockedTicketChair3 = {
+export const mockedTicketChair3: ITicketRequest = {
   chair: 54,
   sessionId: "1",
   userId: "3016fc2b-b609-425a-a164-de33e365049e",
 };
 
-export const mockedTicketChairError = {
+export const mockedTicketChairError: ITicketRequest = {
   chair: 32,
   sessionId: "1",
   userId: "3016fc2b-b609-425a-a164-de33e365049e",
