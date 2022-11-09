@@ -77,6 +77,19 @@ describe("/cinema", () => {
     expect(cinemaCreateResponse.status).toBe(403);
   });
 
+  test("GET /cinema -  should be able to list all sessions. ", async () => {
+    const adminLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedAdminLogin);
+
+    const cinemaListResponse = await request(app)
+      .get("/cinema")
+      .set("Authorization", `Bearer ${adminLoginResponse.body.token}`);
+
+    expect(cinemaListResponse.body).toHaveProperty("cinemas");
+    expect(cinemaListResponse.status).toBe(200);
+  });
+
   test("PATCH /cinema -  should be able to update a cinema", async () => {
     const adminLoginResponse = await request(app)
       .post("/login")

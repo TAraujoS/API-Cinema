@@ -1,5 +1,6 @@
 import { Router } from "express";
 import createCinemaController from "../controllers/cinema/createCinema.controller";
+import listCinemaController from "../controllers/cinema/listSessions.controller";
 import updateCinemaController from "../controllers/cinema/updateCinema.controller";
 import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
 import ensureIsAdmMiddleware from "../middlewares/ensureIsAdm.middleware";
@@ -14,7 +15,7 @@ cinemaRoutes.post(
   createCinemaController
 );
 
-cinemaRoutes.post(
+cinemaRoutes.get(
   "",
   ensureAuthMiddleware,
   ensureIsAdmMiddleware,

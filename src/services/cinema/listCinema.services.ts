@@ -1,14 +1,12 @@
 import { AppDataSource } from "../../data-source";
-import { Sessions } from "../../entities/sessions.entities";
+import { Cinema } from "../../entities/cine.entities";
 
-const listSessionsServices = async (): Promise<Sessions[]> => {
-  const scheduleRespository = AppDataSource.getRepository(Sessions);
+const listCinemaServices = async (): Promise<Cinema[]> => {
+  const scheduleRespository = AppDataSource.getRepository(Cinema);
 
-  const schedules = await scheduleRespository.find({
-    relations: { room: true, movie: true },
-  });
+  const cinemas = await scheduleRespository.find({});
 
-  return schedules;
+  return cinemas;
 };
 
-export default listSessionsServices;
+export default listCinemaServices;

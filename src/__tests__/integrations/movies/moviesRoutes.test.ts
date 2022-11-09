@@ -167,9 +167,6 @@ describe("Testing movie routes", () => {
       .set("Authorization", `Bearer ${employeeLoginResponse.body.token}`)
       .send(mockedMovie4);
 
-    console.log(newMovie.body);
-    console.log(mockedMovie4);
-
     const movieTobeUpdated = await request(app)
       .patch(`/movies/${newMovie.body.id}`)
       .set("Authorization", `Bearer ${employeeLoginResponse.body.token}`);
