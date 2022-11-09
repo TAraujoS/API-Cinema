@@ -11,6 +11,7 @@ const paymentRoutes = Router();
 paymentRoutes.post("", ensureAuthMiddleware, createPaymentController);
 paymentRoutes.patch("/:id", ensureAuthMiddleware, updatePaymentController);
 paymentRoutes.get("", ensureAuthMiddleware, listPaymentController);
+paymentRoutes.get("/:id", ensureAuthMiddleware, listPaymentController);
 paymentRoutes.delete("/:id", ensureAuthMiddleware, deletePaymentController);
 
 export default paymentRoutes;
