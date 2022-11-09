@@ -23,6 +23,10 @@ const createTicketsService = async ({
     relations: { user: true },
   });
 
+  if (!chair || !sessionId || !userId) {
+    throw new AppError("Missing required field", 400);
+  }
+
   if (chair > 100) {
     throw new AppError("Choose a chair between 0 to 100");
   }

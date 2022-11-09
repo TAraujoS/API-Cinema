@@ -11,6 +11,10 @@ const createCinemaServices = async (name: string): Promise<Cinema> => {
 
   const cinema = await cinemaRepository.findOneBy({ name });
 
+  if (!cinema) {
+    throw new AppError("Missing required field", 400);
+  }
+
   if (cinema) {
     throw new AppError("This cinema already exists");
   }
