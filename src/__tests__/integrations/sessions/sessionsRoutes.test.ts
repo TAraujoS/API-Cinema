@@ -14,8 +14,6 @@ import {
   mockedRoom2,
   mockedRoom3,
   mockedSession1,
-  mockedSession2,
-  mockedSession3,
   mockedSessionExistent,
   mockedSessionUpdate,
   mockedUser,
