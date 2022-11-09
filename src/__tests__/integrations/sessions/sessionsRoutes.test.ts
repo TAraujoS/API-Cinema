@@ -79,6 +79,7 @@ describe("/sessions", () => {
     await connection.destroy();
   });
 
+
   test("POST /sessions -  should be able to create a session", async () => {
     const employeeLoginResponse = await request(app)
       .post("/login")
