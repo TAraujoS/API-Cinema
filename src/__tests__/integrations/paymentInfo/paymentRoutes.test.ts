@@ -57,7 +57,7 @@ describe("Testing payment route", () => {
     expect(responseCreate1.body).not.toHaveProperty("code");
   });
 
-  test("POST /paymentInfo - Should be able to create a new payment data", async () => {
+  test("POST /paymentInfo - Should be able to create a new payment data for employee", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedEmployeeLogin);
@@ -72,7 +72,7 @@ describe("Testing payment route", () => {
     expect(responseCreate2.body).not.toHaveProperty("code");
   });
 
-  test("POST /paymentInfo - Should be able to create a new payment data", async () => {
+  test("POST /paymentInfo - Should be able to create a new payment data for adm", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedAdmin);
@@ -87,7 +87,7 @@ describe("Testing payment route", () => {
     expect(responseCreate3.body).not.toHaveProperty("code");
   });
 
-  test("POST /paymentInfo - Not should be able to create a new payment data", async () => {
+  test("POST /paymentInfo - Not should be able to create a new payment data for invalid card number", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedUserLogin);
@@ -100,7 +100,7 @@ describe("Testing payment route", () => {
     expect(responseWrongNumber.status).toBe(400);
   });
 
-  test("POST /paymentInfo - Not should be able to create a new payment data", async () => {
+  test("POST /paymentInfo - Not should be able to create a new payment data for invalid code number", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedUserLogin);
@@ -113,7 +113,7 @@ describe("Testing payment route", () => {
     expect(responseWrongCode.status).toBe(400);
   });
 
-  test("POST /paymentInfo - Not should be able to create a new payment data", async () => {
+  test("POST /paymentInfo - Not should be able to create a duplicate new payment data", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedUserLogin);
@@ -126,7 +126,7 @@ describe("Testing payment route", () => {
     expect(responseInfoAlreadyExists.status).toBe(400);
   });
 
-  test("POST /paymentInfo - Not should be able to create a new payment data", async () => {
+  test("POST /paymentInfo - Not should be able to create a new payment data without date", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedUserLogin);
@@ -137,6 +137,36 @@ describe("Testing payment route", () => {
       .send(mockedPaymentInfoDueDateError);
 
     expect(responseInfoDueDateNotExists.status).toBe(400);
+  });
+
+  test("GET /paymentInfo - Should be able list all payment data", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const responseGetData = await request(app)
+      .get("/paymentInfo")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentPatchInfoAna);
+
+    expect(responseGetData.status).toBe(200);
+  });
+
+  test("GET /paymentInfo/:id - Should be able list payment data by id", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const getPayment = await request(app)
+      .get("/paymentInfo")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
+
+    const responseGetData = await request(app)
+      .get(`/paymentInfo/${getPayment.body.id}`)
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedPaymentPatchInfoAna);
+
+    expect(responseGetData.status).toBe(200);
   });
 
   test("PATCH /paymentInfo/:id - Should be able to update payment data", async () => {
@@ -165,7 +195,6 @@ describe("Testing payment route", () => {
       .get("/paymentInfo")
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
 
-    console.log(getPayment.body);
     const responseMatchIdUser = await request(app)
       .delete(`/paymentInfo/${getPayment.body.id}`)
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);

@@ -4,11 +4,13 @@ import app from "../../../app";
 import { AppDataSource } from "../../../data-source";
 import {
   mockedAdmin,
+  mockedAdminLogin,
   mockedCinema,
   mockedCinemaExistent,
   mockedCinemaUpdate,
   mockedEmployeeLogin,
   mockedUser,
+  mockedUserLogin,
 } from "../../mocks";
 
 describe("/cinema", () => {
@@ -35,7 +37,7 @@ describe("/cinema", () => {
   test("POST /cinema -  should be able to create a cinema", async () => {
     const adminLoginResponse = await request(app)
       .post("/login")
-      .send(mockedAdmin);
+      .send(mockedAdminLogin);
 
     const cinemaCreateResponse = await request(app)
       .post("/cinema")
@@ -50,7 +52,7 @@ describe("/cinema", () => {
   test("POST /cinema -  not should be able to create a cinema already exist", async () => {
     const adminLoginResponse = await request(app)
       .post("/login")
-      .send(mockedAdmin);
+      .send(mockedAdminLogin);
 
     const cinemaCreateResponse = await request(app)
       .post("/cinema")
@@ -64,7 +66,7 @@ describe("/cinema", () => {
   test("POST /cinema -  must not be able to create a cinema without authorization", async () => {
     const adminUserResponse = await request(app)
       .post("/login")
-      .send(mockedUser);
+      .send(mockedUserLogin);
 
     const cinemaCreateResponse = await request(app)
       .post("/cinema")
@@ -72,13 +74,26 @@ describe("/cinema", () => {
       .send(mockedCinemaExistent);
 
     expect(cinemaCreateResponse.body).toHaveProperty("message");
-    expect(cinemaCreateResponse.status).toBe(401);
+    expect(cinemaCreateResponse.status).toBe(403);
+  });
+
+  test("GET /cinema -  should be able to list all sessions. ", async () => {
+    const adminLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedAdminLogin);
+
+    const cinemaListResponse = await request(app)
+      .get("/cinema")
+      .set("Authorization", `Bearer ${adminLoginResponse.body.token}`);
+
+    expect(cinemaListResponse.body).toHaveProperty("cinemas");
+    expect(cinemaListResponse.status).toBe(200);
   });
 
   test("PATCH /cinema -  should be able to update a cinema", async () => {
     const adminLoginResponse = await request(app)
       .post("/login")
-      .send(mockedAdmin);
+      .send(mockedAdminLogin);
 
     const cinemaCreateResponse = await request(app)
       .patch(`/cinema/${1}`)
@@ -88,5 +103,19 @@ describe("/cinema", () => {
     expect(cinemaCreateResponse.body).toHaveProperty("name");
     expect(cinemaCreateResponse.body).toHaveProperty("id");
     expect(cinemaCreateResponse.status).toBe(201);
+  });
+
+  test("PATCH /cinema -  should be able to update a cinema", async () => {
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const cinemaCreateResponse = await request(app)
+      .patch(`/cinema/${1}`)
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedCinemaUpdate);
+
+    expect(cinemaCreateResponse.body).toHaveProperty("message");
+    expect(cinemaCreateResponse.status).toBe(403);
   });
 });

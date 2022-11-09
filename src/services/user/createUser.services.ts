@@ -17,6 +17,12 @@ const createUserService = async ({
 
   const hashedPassword = await hash(password, 10);
 
+   if(!name || !email || !password ){
+
+    throw new AppError(" required field !", 400);
+    
+   }
+  
   const findUser = await userRepository.findOneBy({
     email,
   });
@@ -24,8 +30,9 @@ const createUserService = async ({
   if (findUser) {
     throw new AppError("User already exists", 409);
   }
-  if (contact.length >= 12) {
-    throw new AppError("must contain eleven digits! ", 400);
+
+  if(contact.length !== 11){
+    throw new AppError("must contain eleven digits! ", 400)
   }
 
   const user = userRepository.create({

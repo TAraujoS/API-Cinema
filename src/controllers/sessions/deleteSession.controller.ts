@@ -1,6 +1,5 @@
-import deleteRoomService from "../../services/rooms/deleteRoom.services";
 import { Request, Response } from "express";
-import deleteSessionService from "../../services/rooms/deleteRoom.services";
+import deleteSessionService from "../../services/sessions/deleteService.services";
 
 const deleteSessionController = async (req: Request, res: Response) => {
   const { id } = req.params;

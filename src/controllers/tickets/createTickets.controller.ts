@@ -8,7 +8,7 @@ const createTicketsController = async (req: Request, res: Response) => {
 
   const ticket = await createTicketsService(data);
 
-  return res.status(200).json(instanceToPlain(ticket));
+  return res.status(201).json(instanceToPlain(ticket));
 };
 
 export default createTicketsController;

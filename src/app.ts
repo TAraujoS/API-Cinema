@@ -22,7 +22,6 @@ app.use("/movies", movieRoutes);
 app.use("/sessions", sessionsRouter);
 app.use("/cinema", cinemaRoutes);
 app.use("/tickets", ticketsRoutes);
-
 app.use(handleErrorMiddleware);
 
 export default app;

@@ -23,7 +23,7 @@ export class Sessions {
   @ManyToOne(() => Rooms, { eager: true })
   room: Rooms;
 
-  @ManyToOne(() => Movies, { eager: true })
+  @ManyToOne(() => Movies)
   movie: Movies;
 
   @OneToMany(() => Tickets, (ticket) => ticket.session)

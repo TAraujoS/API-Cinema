@@ -3,9 +3,7 @@ import listAllTicketsController from "../controllers/tickets/listAllTickets.cont
 import listTicketByIdController from "../controllers/tickets/listTicketById.controller";
 import createTicketsController from "../controllers/tickets/createTickets.controller";
 import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
-import ensureIsAdmMiddleware from "../middlewares/ensureIsAdm.middleware";
-import ensureIsEmployeeAdmMiddleware from "../middlewares/ensureIsEmployeeAdm.middleware";
-import ensureIdUserMiddleware from "../middlewares/ensureIdUser.middleware";
+import ensureIsEmployeeMiddleware from "../middlewares/ensureIsEmployee.middleware";
 
 const ticketsRoutes = Router();
 
@@ -14,15 +12,10 @@ ticketsRoutes.post("", ensureAuthMiddleware, createTicketsController);
 ticketsRoutes.get(
   "",
   ensureAuthMiddleware,
-  ensureIsEmployeeAdmMiddleware,
+  ensureIsEmployeeMiddleware,
   listAllTicketsController
 );
 
-ticketsRoutes.get(
-  "/:id",
-  ensureAuthMiddleware,
-  ensureIdUserMiddleware,
-  listTicketByIdController
-);
+ticketsRoutes.get("/:id", ensureAuthMiddleware, listTicketByIdController);
 
 export default ticketsRoutes;
