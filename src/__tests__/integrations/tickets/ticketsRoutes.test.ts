@@ -168,6 +168,6 @@ describe("/tickets", () => {
 
     expect(resultTicketListedById.status).toBe(200);
     expect(resultTicketListedById.body).toHaveProperty("id");
-    expect(resultTicketListedById.body).toHaveProperty("movie");
+    expect(resultTicketListedById.body).toHaveProperty("chair");
   });
 });
