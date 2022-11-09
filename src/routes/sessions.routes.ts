@@ -5,6 +5,7 @@ import listSessionWithMovieIdController from "../controllers/sessions/listSessio
 import updateSessionController from "../controllers/sessions/updateSession.controller";
 import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
 import ensureIsEmployeeMiddleware from "../middlewares/ensureIsEmployee.middleware";
+import ensureIsAdmMiddleware from "../middlewares/ensureIsAdm.middleware";
 
 const sessionsRouter = Router();
 
@@ -27,6 +28,13 @@ sessionsRouter.patch(
   "/:id",
   ensureAuthMiddleware,
   ensureIsEmployeeMiddleware,
+  updateSessionController
+);
+
+sessionsRouter.delete(
+  "/:id",
+  ensureAuthMiddleware,
+  ensureIsAdmMiddleware,
   updateSessionController
 );
 
