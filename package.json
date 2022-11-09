@@ -1,6 +1,9 @@
 {
   "name": "api_cine_express",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
+  },
   "main": "index.js",
   "repository": "git@github.com/larissa-sato/cine_express-projeto_final-M4",
   "author": "Thiago AS <thiago-pin@gotmail.com>",

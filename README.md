@@ -29,7 +29,7 @@ These were the main technologies used in this project:
 ### **Team**
 
 > - [Thiago A. Scherer](https://www.linkedin.com/in/thiago-araujo-scherer/) - SM
-> - [Larissa](https://www.linkedin.com/in/larissa-sato-51a835222/) - TL
+> - [Larissa Sato](https://www.linkedin.com/in/larissa-sato-51a835222/) - TL
 > - [Amon Fanticelli](https://www.linkedin.com/in/amon-fanticelli/) - PO
 > - [Ricardo Martins](https://www.linkedin.com/in/ormartins02/) - Dev
 > - [Leandro Junges](https://www.linkedin.com/in/leandro-junges/) - Dev
@@ -59,7 +59,7 @@ These were the main technologies used in this project:
 - [Session](#6-sessions)
 - [Tickets](#7-tickets)
 
----
+<br>
 
 ## **4. Authentication**
 
@@ -638,7 +638,7 @@ The Payments object is defined as:
 
 <br>
 
-## POST - `/paymentInfo`
+## POST `/paymentInfo`
 
 <br>
 
@@ -732,7 +732,7 @@ The Payments object is defined as:
 
 <br>
 
-## PATCH - `/paymentInfo/:id`
+## PATCH `/paymentInfo/:id`
 
 <br>
 
@@ -816,7 +816,7 @@ The Payments object is defined as:
 
 <br>
 
-## GET - `/paymentInfo`
+## GET `/paymentInfo`
 
 <br>
 
@@ -880,7 +880,7 @@ The Payments object is defined as:
 
 <br>
 
-## GET - `/paymentInfo/:id`
+## GET `/paymentInfo/:id`
 
 <br>
 
@@ -942,7 +942,7 @@ The Payments object is defined as:
 
 <br>
 
-## DELETE - `/paymentInfo/:id`
+## DELETE `/paymentInfo/:id`
 
 <br>
 
@@ -1085,7 +1085,82 @@ The Cinema object is defined as:
 
 #
 
-## **3.2 Update Cinema**
+## **3.2 List Cinema**
+
+[Back to Endpoints](#5-endpoints)
+
+<br>
+
+## GET - `/cinema`
+
+<br>
+
+### **Request**:
+
+- GET /cinema
+- Host: https://cine-express-projeto-m4.herokuapp.com/movies/
+- Authorization: Bearer Token
+- Content-type: application/json
+- Empty Body
+
+<br>
+
+### **Request headers**:
+
+```json
+{
+  "authorization": "Bearer Token"
+}
+```
+
+<br>
+
+### **Expected Response**:
+
+<br>
+
+#### **Status `200 - OK`**
+
+```json
+{
+  "cinemas": [
+    {
+      "id": 1,
+      "name": "Cine Express"
+    },
+    {
+      "id": 2,
+      "name": "Cine Jason Button"
+    },
+    {
+      "id": 3,
+      "name": "Cine Jason Button"
+    },
+    {
+      "id": 4,
+      "name": "Cine Prive"
+    }
+  ]
+}
+```
+
+<br>
+
+### **Error Responses**:
+
+<br>
+
+#### **Status `401 - UNAUTHORIZED`** - "Missing authorization token"
+
+```json
+{
+  "message": "Missing authorization token"
+}
+```
+
+#
+
+## **3.3 Update Cinema**
 
 [Back to Endpoints](#3-endpoints)
 
@@ -1215,7 +1290,7 @@ The Movie object is defined as:
 
 <br>
 
-## POST - `/movies`
+## POST `/movies`
 
 <br>
 
@@ -1296,7 +1371,7 @@ The Movie object is defined as:
 
 <br>
 
-## GET - `/movies`
+## GET `/movies`
 
 <br>
 
@@ -1366,7 +1441,7 @@ The Movie object is defined as:
 
 <br>
 
-## GET - `/movies/movieId`
+## GET `/movies/movieId`
 
 <br>
 
@@ -1434,7 +1509,7 @@ The Movie object is defined as:
 
 <br>
 
-## PATCH - `/movies/movieId`
+## PATCH `/movies/movieId`
 
 <br>
 
@@ -1526,7 +1601,7 @@ The Movie object is defined as:
 
 <br>
 
-## DELETE - `/movies/movieId`
+## DELETE `/movies/movieId`
 
 <br>
 
@@ -1578,6 +1653,383 @@ The Movie object is defined as:
 ```json
 {
   "message": "User is not an admin"
+}
+```
+
+#
+
+## **5.** **ROOMS**
+
+[Back to Endpoints](#3-endpoints)
+
+<br>
+
+The Room object is defined as:
+
+| Field    | Type   | Description                                |
+| -------- | ------ | ------------------------------------------ |
+| id       | string | Room unique identifier.                    |
+| capacity | number | seating capacity in a room.                |
+| CinemaId | string | Identification of the cinema that the room |
+|          |        | belongs to.                                |
+
+<br>
+
+### **Endpoints**
+
+<br>
+
+| Method | Routes     | Description                                |
+| ------ | ---------- | ------------------------------------------ |
+| POST   | /rooms     | Create room.                               |
+| GET    | /rooms     | List all rooms.                            |
+| GET    | /rooms/:id | List a room using its ID as a parameter.   |
+| PATCH  | /rooms/:id | Update a room using its ID as a parameter. |
+
+---
+
+<br>
+
+## **5.1 Room Creation**
+
+[Back to Endpoints](#6-endpoints)
+
+<br>
+
+## POST `/rooms`
+
+<br>
+
+### **Request**:
+
+- POST /rooms
+- Host: https://cine-express-projeto-m4.herokuapp.com
+- Authorization: Bearer Token
+- Content-type: application/json
+
+<br>
+
+### **Request body**:
+
+```json
+{
+  "capacity": 100,
+  "cinema": "1"
+}
+```
+
+<br>
+
+### **Expected Response**:
+
+<br>
+
+#### **Status `201 - CREATED`**
+
+```json
+{
+  "capacity": 100,
+  "cinema": {
+    "id": 1,
+    "name": "CineGusta"
+  },
+  "id": 1
+}
+```
+
+<br>
+
+### **Error Responses**:
+
+<br>
+
+#### **Status `401 - UNAUTHORIZED`** - "Missing authorization token"
+
+```json
+{
+  "message": "Invalid token"
+}
+```
+
+<br>
+
+#### **Status `400 - BAD REQUEST`** - Minimum of seats
+
+```json
+{
+  "message": "Minimum of 30 chairs"
+}
+```
+
+<br>
+
+#### **Status `400 - BAD REQUEST`** - Maximum of seats
+
+```json
+{
+  "message": "Maximum of 100 chairs"
+}
+```
+
+<br>
+
+#### **Status `400 - BAD REQUEST`** - Maximum number of rooms created
+
+```json
+{
+  "message": "Only 10 rooms can be created"
+}
+```
+
+<br>
+
+#
+
+## **5.2 List Rooms**
+
+[Back to Endpoints](#5-endpoints)
+
+<br>
+
+## GET `/rooms`
+
+<br>
+
+### **Request**:
+
+- GET /rooms
+- Host: https://cine-express-projeto-m4.herokuapp.com
+- Authorization: Bearer Token
+- Content-type: application/json
+- Empty body
+
+<br>
+
+### **Request headers**:
+
+```json
+{
+  "authorization": "Bearer Token"
+}
+```
+
+<br>
+
+### **Expected Response**:
+
+<br>
+
+#### **Status `200 - OK`**
+
+```json
+[
+   {
+	"id": 1,
+	"capacity": 100,
+	"sessions": []
+   }
+...
+]
+```
+
+<br>
+
+### **Error Responses**:
+
+<br>
+
+#### **Status `401 - UNAUTHORIZED`** - "Missing authorization token"
+
+```json
+{
+  "message": "invalid token"
+}
+```
+
+#
+
+## **5.3 List Room by Id**
+
+[Back to Endpoints](#5-endpoints)
+
+<br>
+
+## GET `/rooms/:id`
+
+<br>
+
+### **Request**:
+
+- GET /rooms/:id
+- Host: https://cine-express-projeto-m4.herokuapp.com
+- Authorization: Bearer Token
+- Content-type: application/json
+- Empty body
+- User must be an Adm
+
+<br>
+
+### **Request headers**:
+
+```json
+{
+  "authorization": "Bearer Token"
+}
+```
+
+<br>
+
+### **Expected Response**:
+
+<br>
+
+#### **Status `200 - OK`**
+
+```json
+{
+  "id": 1,
+  "capacity:": 100,
+  "sessions": []
+}
+```
+
+<br>
+
+### **Error Responses**:
+
+<br>
+
+#### **Status `401 - UNAUTHORIZED`** - "Missing authorization token"
+
+```json
+{
+  "message": "invalid token"
+}
+```
+
+<br>
+
+#### **Status `404 - NOT FOUND`** - Invalid Id or room not exists
+
+```json
+{
+  "message": "Invalid Id or room not exists"
+}
+```
+
+#
+
+## **5.4 Update Room**
+
+[Back to Endpoints](#5-endpoints)
+
+<br>
+
+## PATCH `/rooms/:id`
+
+<br>
+
+### **Request**:
+
+- PATCH /rooms/:id
+- Host: https://cine-express-projeto-m4.herokuapp.com
+- Authorization: Bearer Token
+- Content-type: application/json
+- User must be an Employee and admin
+
+<br>
+
+### **Request headers**:
+
+```json
+{
+  "authorization": "Bearer Token"
+}
+```
+
+### **Request body**:
+
+```json
+{
+  "capacity": 50
+}
+```
+
+<br>
+
+### **Expected Response**:
+
+<br>
+
+#### **Status `200 - OK`**
+
+```json
+{
+  "Updated room"
+}
+```
+
+<br>
+
+### **Error Responses**:
+
+<br>
+
+#### **Status `401 - UNAUTHORIZED`** - "Missing authorization token"
+
+```json
+{
+  "message": "invalid token"
+}
+```
+
+<br>
+
+#### **Status `403 - FORBIDDEN`** - "User is not employee"
+
+```json
+{
+  "message": "User is not employee"
+}
+```
+
+<br>
+
+#### **Status `403 - FORBIDDEN`** - "User is not adm"
+
+```json
+{
+  "message": "User is not adm"
+}
+```
+
+<br>
+
+#### **Status `404 - NOT FOUND`** - Room was not found
+
+```json
+{
+  "message": "Room was not found"
+}
+```
+
+<br>
+
+#### **Status `400 - BAD REQUEST`** - Minimum limit
+
+```json
+{
+  "message": "Room cannot have a capacity less than 30"
+}
+```
+
+<br>
+
+#### **Status `400 - BAD REQUEST`** - Maximum limit
+
+```json
+{
+  "message": "Room cannot have a capacity above than 100"
 }
 ```
 

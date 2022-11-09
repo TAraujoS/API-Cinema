@@ -1,7 +1,6 @@
 import { ICinema } from "../../interfaces/cine";
 import { IMoviesRequest } from "../../interfaces/movies";
 import { IRoomRequest, IRoomUpdate } from "../../interfaces/rooms";
-import { ISessionRequest } from "../../interfaces/sessions";
 import { ITicketRequest } from "../../interfaces/tickets";
 import { IUserLogin, IUserRequest } from "../../interfaces/user";
 
@@ -92,8 +91,18 @@ export const mockedRoom2: IRoomRequest = {
   cinemaId: "1",
 };
 
+export const mockedRoom2Error: IRoomRequest = {
+  capacity: 25,
+  cinemaId: "1",
+};
+
 export const mockedRoom3: IRoomRequest = {
   capacity: 100,
+  cinemaId: "1",
+};
+
+export const mockedRoom3Error: IRoomRequest = {
+  capacity: 102,
   cinemaId: "1",
 };
 

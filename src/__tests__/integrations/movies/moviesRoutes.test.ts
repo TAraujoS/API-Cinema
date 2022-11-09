@@ -2,7 +2,6 @@ import request from "supertest";
 import app from "../../../app";
 import { DataSource } from "typeorm";
 import { AppDataSource } from "../../../data-source";
-import { IMovies } from "../../../interfaces/movies";
 import { mockedMovie1, mockedMovie2, mockedMovie4 } from "../../mocks/index";
 import { mockedUser } from "../../mocks/index";
 import { mockedUserExistente } from "../../mocks/index";
@@ -11,9 +10,7 @@ import { mockedAdmin } from "../../mocks/index";
 import { mockedEmployee } from "../../mocks/index";
 import { mockedUserLogin } from "../../mocks/index";
 import { mockedAdminLogin } from "../../mocks/index";
-import { mockedEmployeeLogin } from "../../mocks/index";
 import { mockedCinema } from "../../mocks/index";
-import { response } from "express";
 
 describe("Testing movie routes", () => {
   let connection: DataSource;

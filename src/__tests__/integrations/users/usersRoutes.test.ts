@@ -4,7 +4,6 @@ import request from "supertest";
 import {
   mockedAdmin,
   mockedAdminLogin,
-  mockedEmployee,
   mockedUser,
   mockedUserLogin,
 } from "../../mocks";
