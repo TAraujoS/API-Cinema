@@ -80,8 +80,6 @@ describe("Testing movie routes", () => {
     expect(resultListMoviesLogged.status).toBe(403);
   });
 
-  //
-
   test("GET /movies -  Must be able to list all movies", async () => {
     await request(app).post("/users").send(mockedUser);
     const userLoginResponse = await request(app)
