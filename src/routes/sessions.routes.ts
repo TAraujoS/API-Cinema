@@ -6,6 +6,7 @@ import updateSessionController from "../controllers/sessions/updateSession.contr
 import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
 import ensureIsEmployeeMiddleware from "../middlewares/ensureIsEmployee.middleware";
 import ensureIsAdmMiddleware from "../middlewares/ensureIsAdm.middleware";
+import deleteSessionController from "../controllers/sessions/deleteSession.controller";
 
 const sessionsRouter = Router();
 
@@ -35,7 +36,7 @@ sessionsRouter.delete(
   "/:id",
   ensureAuthMiddleware,
   ensureIsAdmMiddleware,
-  updateSessionController
+  deleteSessionController
 );
 
 export default sessionsRouter;
