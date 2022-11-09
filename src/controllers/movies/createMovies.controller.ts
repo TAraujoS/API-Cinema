@@ -10,4 +10,4 @@ const createMovieController = async (req: Request, res: Response) => {
   return res.status(201).json(createdMovie);
 };
 
-export { createMovieController };
+export default createMovieController;

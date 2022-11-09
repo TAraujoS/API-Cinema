@@ -8,7 +8,7 @@ const listSessionWithMovieIdController = async (
   const id = req.params.id;
   const sessions = await listSessionsWithMovieIdServices(id);
 
-  return res.status(200).json({ sessions: sessions });
+  return res.status(200).json({ movie: sessions });
 };
 
 export default listSessionWithMovieIdController;

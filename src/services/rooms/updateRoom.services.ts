@@ -17,6 +17,14 @@ const updateRoomService = async (
     throw new AppError("Room was not found");
   }
 
+  if (capacity < 30) {
+    throw new AppError("Room cannot have a capacity less than 30");
+  }
+
+  if (capacity > 100) {
+    throw new AppError("Room cannot have a capacity above than 100");
+  }
+
   await roomsRepository.update(id, {
     capacity: capacity ? capacity : room.capacity,
   });

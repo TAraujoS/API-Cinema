@@ -5,6 +5,8 @@ export const normalizeDateService = async (day: string, hour: string) => {
 
   const normalDate = newDate[0] + "/" + newDate[1] + "/" + newDate[2];
 
+  const normalDueDate = newDate[0] + "/" + newDate[1] + "/" + "01";
+
   const nomalDateWithHour =
     newDate[0] +
     "/" +
@@ -18,6 +20,9 @@ export const normalizeDateService = async (day: string, hour: string) => {
 
   const fullDate = new Date(nomalDateWithHour);
 
+  const paymentDate = new Date(normalDueDate);
+  console.log(normalDueDate, paymentDate);
+
   const sessionDate = new Date(normalDate);
 
   const dayWeek = new Date(sessionDate).getDay();
@@ -30,6 +35,7 @@ export const normalizeDateService = async (day: string, hour: string) => {
     hours,
     dayWeek,
     fullDate,
+    paymentDate,
   };
 
   return data;

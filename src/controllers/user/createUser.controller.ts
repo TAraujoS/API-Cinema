@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IUserRequest } from "../../interfaces/user/users.interface";
+import { IUserRequest } from "../../interfaces/user";
 import createUserService from "../../services/user/createUser.services";
 import { instanceToPlain } from "class-transformer";
 

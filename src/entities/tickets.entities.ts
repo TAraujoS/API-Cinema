@@ -1,14 +1,8 @@
-import {
-  Entity,
-  Column,
-  PrimaryColumn,
-  OneToOne,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Exclude } from "class-transformer";
+import { Entity, Column, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Sessions } from "./sessions.entities";
 import { User } from "./user.entities";
+import { v4 as uuid } from "uuid";
 
 @Entity("tickets")
 export class Tickets {
@@ -21,10 +15,16 @@ export class Tickets {
   @Column({ nullable: true })
   chair: number;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { cascade: true })
+  @Exclude()
   user: User;
 
-  @OneToOne(() => Sessions)
-  @JoinColumn()
+  @ManyToOne(() => Sessions)
   session: Sessions;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }

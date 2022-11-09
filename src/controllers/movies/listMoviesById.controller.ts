@@ -9,4 +9,4 @@ const listMoviesByIdController = async (req: Request, res: Response) => {
   return res.status(200).json(movies);
 };
 
-export { listMoviesByIdController };
+export default listMoviesByIdController;

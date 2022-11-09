@@ -8,7 +8,7 @@ const updateSessionController = async (req: Request, res: Response) => {
 
   const updatedSession = await updateSessionService(data, id);
 
-  return res.status(200).json(updatedSession);
+  return res.status(200).json({ session: updatedSession });
 };
 
 export default updateSessionController;

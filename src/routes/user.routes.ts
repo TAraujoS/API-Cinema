@@ -7,32 +7,39 @@ import updateUserController from "../controllers/user/updateUser.controller";
 import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
 import ensureUpdateMiddleware from "../middlewares/ensureUpdate.middleware";
 import ensureIsEmployeeAdmMiddleware from "../middlewares/ensureIsEmployeeAdm.middleware";
+import ensureIdUserMiddleware from "../middlewares/ensureIdUser.middleware";
+import ensureIsAdmMiddleware from "../middlewares/ensureIsAdm.middleware";
 
 const userRoutes = Router();
 
 userRoutes.post("", createUserController);
+
 userRoutes.get(
   "",
   ensureAuthMiddleware,
   ensureIsEmployeeAdmMiddleware,
   listUsersController
 );
+
 userRoutes.get(
   "/:id",
   ensureAuthMiddleware,
   ensureIsEmployeeAdmMiddleware,
   listUserIdController
 );
+
 userRoutes.patch(
   "/:id",
   ensureAuthMiddleware,
   ensureUpdateMiddleware,
+  ensureIdUserMiddleware,
   updateUserController
 );
+
 userRoutes.delete(
   "/:id",
   ensureAuthMiddleware,
-  ensureIsEmployeeAdmMiddleware,
+  ensureIsAdmMiddleware,
   deleteUserController
 );
 

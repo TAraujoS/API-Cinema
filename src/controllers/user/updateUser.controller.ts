@@ -1,5 +1,6 @@
+import { instanceToPlain } from "class-transformer";
 import { Request, Response } from "express";
-import { IUserUpdate } from "../../interfaces/user/users.interface";
+import { IUserUpdate } from "../../interfaces/user";
 import updateUserService from "../../services/user/updateUser.services";
 
 const updateUserController = async (req: Request, res: Response) => {
@@ -9,7 +10,7 @@ const updateUserController = async (req: Request, res: Response) => {
 
   const updateUser = await updateUserService(user, id);
 
-  return res.json(updateUser);
+  return res.json({ message: "User updated" });
 };
 
 export default updateUserController;

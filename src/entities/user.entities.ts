@@ -10,6 +10,7 @@ import {
   ManyToOne,
   OneToMany,
 } from "typeorm";
+import { v4 as uuid } from "uuid";
 import { Cinema } from "./cine.entities";
 import { PaymentInfo } from "./paymentInfo.entities";
 import { Tickets } from "./tickets.entities";
@@ -50,14 +51,20 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Tickets, (tickets) => tickets.user)
-  @JoinColumn()
+  @OneToMany(() => Tickets, (tickets) => tickets.user, { eager: true })
   tickets: Tickets[];
 
-  @OneToOne(() => PaymentInfo)
+  @OneToOne(() => PaymentInfo, { eager: true, onDelete: "CASCADE" })
   @JoinColumn()
-  paymentInfo: string;
+  paymentInfo: PaymentInfo;
 
   @ManyToOne(() => Cinema, { eager: true })
+  @Exclude()
   cinema: Cinema;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }
