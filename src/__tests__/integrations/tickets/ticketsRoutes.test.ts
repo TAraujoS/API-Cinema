@@ -16,6 +16,7 @@ import {
   mockedTicketChair3,
   mockedTicketChairError,
   mockedUser,
+  mockedUserLogin,
   mockedUserLoginNoExistent,
 } from "../../mocks";
 
@@ -70,7 +71,7 @@ describe("/tickets", () => {
     await connection.destroy();
   });
 
-  test("POST /tickets -  should be able to create a ticket", async () => {
+  test("POST /tickets -  Should be able to create a ticket", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedUser);
@@ -86,7 +87,7 @@ describe("/tickets", () => {
     expect(ticketsCreateResponse.status).toBe(201);
   });
 
-  test("POST /tickets -  not should be able to create a ticket with chair already in use", async () => {
+  test("POST /tickets -  Should not be able to create a ticket with chair already in use", async () => {
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedUser);
@@ -100,7 +101,7 @@ describe("/tickets", () => {
     expect(ticketsCreateResponse.status).toBe(400);
   });
 
-  test("POST /tickets -  must not be able to create a ticket without authorization", async () => {
+  test("POST /tickets -  Should not be able to create a ticket without authorization", async () => {
     const userResponse = await request(app)
       .post("/login")
       .send(mockedUserLoginNoExistent);
@@ -114,7 +115,7 @@ describe("/tickets", () => {
     expect(ticketsCreateResponse.status).toBe(401);
   });
 
-  test("GET /tickets -  should be able to list all tickets. ", async () => {
+  test("GET /tickets -  Must be able to list all tickets. ", async () => {
     const admLoginResponse = await request(app)
       .post("/login")
       .send(mockedAdminLogin);
@@ -123,7 +124,50 @@ describe("/tickets", () => {
       .get("/tickets")
       .set("Authorization", `Bearer ${admLoginResponse.body.token}`);
 
-    expect(ticketCreateResponse.body).toHaveProperty("tickets");
+    expect(ticketCreateResponse.body).toHaveLength(1);
     expect(ticketCreateResponse.status).toBe(200);
+  });
+
+  test("GET /tickets -  Should not be able to list tickets without authorization", async () => {
+    const userResponse = await request(app).get("/login").send(mockedUserLogin);
+
+    const ticketsCreateResponse = await request(app)
+      .get("/tickets")
+      .set("Authorization", `Bearer ${userResponse.body.token}`)
+      .send(mockedTicketChair1);
+
+    expect(ticketsCreateResponse.body).toHaveProperty("message");
+    expect(ticketsCreateResponse.status).toBe(401);
+  });
+
+  test("GET /tickets -  Should not be able to list tickets not being Adm", async () => {
+    const userResponse = await request(app).get("/login").send(mockedUserLogin);
+
+    const ticketsCreateResponse = await request(app)
+      .get("/tickets")
+      .set("Authorization", `Bearer ${userResponse.body.token}`)
+      .send(mockedTicketChair1);
+
+    expect(ticketsCreateResponse.body).toHaveProperty("message");
+    expect(ticketsCreateResponse.status).toBe(401);
+  });
+
+  test("GET /tickets/:id -  Must be able to list ticket by Id", async () => {
+    await request(app).post("/users").send(mockedUser);
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const ticket = await request(app)
+      .get("/tickets")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
+    console.log(ticket.body);
+    const resultTicketListedById = await request(app)
+      .get(`/tickets/${ticket.body[0].id}`)
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
+
+    expect(resultTicketListedById.status).toBe(200);
+    expect(resultTicketListedById.body).toHaveProperty("id");
+    expect(resultTicketListedById.body).toHaveProperty("movie");
   });
 });
