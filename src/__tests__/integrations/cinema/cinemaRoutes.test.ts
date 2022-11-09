@@ -74,7 +74,7 @@ describe("/cinema", () => {
       .send(mockedCinemaExistent);
 
     expect(cinemaCreateResponse.body).toHaveProperty("message");
-    expect(cinemaCreateResponse.status).toBe(401);
+    expect(cinemaCreateResponse.status).toBe(403);
   });
 
   test("PATCH /cinema -  should be able to update a cinema", async () => {
@@ -103,6 +103,6 @@ describe("/cinema", () => {
       .send(mockedCinemaUpdate);
 
     expect(cinemaCreateResponse.body).toHaveProperty("message");
-    expect(cinemaCreateResponse.status).toBe(401);
+    expect(cinemaCreateResponse.status).toBe(403);
   });
 });
