@@ -21,7 +21,7 @@ const createRoomsService = async ({
     throw new AppError("Maximum of 100 chairs");
   }
 
-  if (rooms.length > 10) {
+  if (rooms.length >= 10) {
     throw new AppError("Only 10 rooms can be created", 404);
   }
 
