@@ -5,7 +5,7 @@ import { AppError } from "../../errors/appError";
 const listTicketByIdService = async (id: string): Promise<Tickets> => {
   const ticketRepository = AppDataSource.getRepository(Tickets);
 
-  const findTicket = ticketRepository.findOne({
+  const findTicket = await ticketRepository.findOne({
     where: {
       id,
     },
